@@ -1,0 +1,632 @@
+[
+  {
+    "raw_filename": "1BS0_01_msc_20210211.pdf",
+    "organized_path": "organized/2020/Edexcel-GCSE-Business-1BS0-Nov2020-Paper01-MarkScheme.pdf",
+    "year_dir": "2020",
+    "series": "Nov2020",
+    "paper": "01",
+    "doctype": "MarkScheme",
+    "size_bytes": 252040,
+    "sha256_16": "7b7622e11b75462c"
+  },
+  {
+    "raw_filename": "1BS0_01_pef_20190822.pdf",
+    "organized_path": "organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-ExaminerReport.pdf",
+    "year_dir": "2019",
+    "series": "June2019",
+    "paper": "01",
+    "doctype": "ExaminerReport",
+    "size_bytes": 3906865,
+    "sha256_16": "5df25d4ed400773d"
+  },
+  {
+    "raw_filename": "1BS0_01_pef_20210211.pdf",
+    "organized_path": "organized/2020/Edexcel-GCSE-Business-1BS0-Nov2020-Paper01-ExaminerReport.pdf",
+    "year_dir": "2020",
+    "series": "Nov2020",
+    "paper": "01",
+    "doctype": "ExaminerReport",
+    "size_bytes": 177921,
+    "sha256_16": "1ec753e3cea507bf"
+  },
+  {
+    "raw_filename": "1BS0_01_pef_20220224.pdf",
+    "organized_path": "organized/2021/Edexcel-GCSE-Business-1BS0-Nov2021-Paper01-ExaminerReport.pdf",
+    "year_dir": "2021",
+    "series": "Nov2021",
+    "paper": "01",
+    "doctype": "ExaminerReport",
+    "size_bytes": 177641,
+    "sha256_16": "65404a6bedb64e03"
+  },
+  {
+    "raw_filename": "1BS0_01_que_20190525.pdf",
+    "organized_path": "organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-QuestionPaper.pdf",
+    "year_dir": "2019",
+    "series": "June2019",
+    "paper": "01",
+    "doctype": "QuestionPaper",
+    "size_bytes": 873023,
+    "sha256_16": "33dc4851abcc34dd"
+  },
+  {
+    "raw_filename": "1BS0_01_que_20201110.pdf",
+    "organized_path": "organized/2020/Edexcel-GCSE-Business-1BS0-Nov2020-Paper01-QuestionPaper.pdf",
+    "year_dir": "2020",
+    "series": "Nov2020",
+    "paper": "01",
+    "doctype": "QuestionPaper",
+    "size_bytes": 927820,
+    "sha256_16": "d2121e4e44b63047"
+  },
+  {
+    "raw_filename": "1BS0_01_que_20211123.pdf",
+    "organized_path": "organized/2021/Edexcel-GCSE-Business-1BS0-Nov2021-Paper01-QuestionPaper.pdf",
+    "year_dir": "2021",
+    "series": "Nov2021",
+    "paper": "01",
+    "doctype": "QuestionPaper",
+    "size_bytes": 848914,
+    "sha256_16": "efefe6aeeeef058a"
+  },
+  {
+    "raw_filename": "1BS0_01_rms_20190822.pdf",
+    "organized_path": "organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-MarkScheme.pdf",
+    "year_dir": "2019",
+    "series": "June2019",
+    "paper": "01",
+    "doctype": "MarkScheme",
+    "size_bytes": 330208,
+    "sha256_16": "d917dd622eea44cb"
+  },
+  {
+    "raw_filename": "1BS0_01_rms_20220224.pdf",
+    "organized_path": "organized/2021/Edexcel-GCSE-Business-1BS0-Nov2021-Paper01-MarkScheme.pdf",
+    "year_dir": "2021",
+    "series": "Nov2021",
+    "paper": "01",
+    "doctype": "MarkScheme",
+    "size_bytes": 296596,
+    "sha256_16": "f8f2c2b7d9800018"
+  },
+  {
+    "raw_filename": "1BS0_02_msc_20210211.pdf",
+    "organized_path": "organized/2020/Edexcel-GCSE-Business-1BS0-Nov2020-Paper02-MarkScheme.pdf",
+    "year_dir": "2020",
+    "series": "Nov2020",
+    "paper": "02",
+    "doctype": "MarkScheme",
+    "size_bytes": 274060,
+    "sha256_16": "022a24ec5a11f93a"
+  },
+  {
+    "raw_filename": "1BS0_02_pef_20190822.pdf",
+    "organized_path": "organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper02-ExaminerReport.pdf",
+    "year_dir": "2019",
+    "series": "June2019",
+    "paper": "02",
+    "doctype": "ExaminerReport",
+    "size_bytes": 4242543,
+    "sha256_16": "4f8374bf4bea8e75"
+  },
+  {
+    "raw_filename": "1BS0_02_pef_20210211.pdf",
+    "organized_path": "organized/2020/Edexcel-GCSE-Business-1BS0-Nov2020-Paper02-ExaminerReport.pdf",
+    "year_dir": "2020",
+    "series": "Nov2020",
+    "paper": "02",
+    "doctype": "ExaminerReport",
+    "size_bytes": 174665,
+    "sha256_16": "993ce39e14bcdf74"
+  },
+  {
+    "raw_filename": "1BS0_02_que_20190605.pdf",
+    "organized_path": "organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper02-QuestionPaper.pdf",
+    "year_dir": "2019",
+    "series": "June2019",
+    "paper": "02",
+    "doctype": "QuestionPaper",
+    "size_bytes": 1718118,
+    "sha256_16": "567471d22cadbf55"
+  },
+  {
+    "raw_filename": "1BS0_02_que_20201117.pdf",
+    "organized_path": "organized/2020/Edexcel-GCSE-Business-1BS0-Nov2020-Paper02-QuestionPaper.pdf",
+    "year_dir": "2020",
+    "series": "Nov2020",
+    "paper": "02",
+    "doctype": "QuestionPaper",
+    "size_bytes": 914699,
+    "sha256_16": "2991d8ac40b38c7e"
+  },
+  {
+    "raw_filename": "1BS0_02_que_20211127.pdf",
+    "organized_path": "organized/2021/Edexcel-GCSE-Business-1BS0-Nov2021-Paper02-QuestionPaper.pdf",
+    "year_dir": "2021",
+    "series": "Nov2021",
+    "paper": "02",
+    "doctype": "QuestionPaper",
+    "size_bytes": 1153666,
+    "sha256_16": "1b05bc349c1c6506"
+  },
+  {
+    "raw_filename": "1BS0_02_rms_20190822.pdf",
+    "organized_path": "organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper02-MarkScheme.pdf",
+    "year_dir": "2019",
+    "series": "June2019",
+    "paper": "02",
+    "doctype": "MarkScheme",
+    "size_bytes": 233879,
+    "sha256_16": "93107ea135b7fb94"
+  },
+  {
+    "raw_filename": "1BS0_02_rms_20220224.pdf",
+    "organized_path": "organized/2021/Edexcel-GCSE-Business-1BS0-Nov2021-Paper02-MarkScheme.pdf",
+    "year_dir": "2021",
+    "series": "Nov2021",
+    "paper": "02",
+    "doctype": "MarkScheme",
+    "size_bytes": 284517,
+    "sha256_16": "53303eb31642a452"
+  },
+  {
+    "raw_filename": "1bs0-01-pef-20220825.pdf",
+    "organized_path": "organized/2022/Edexcel-GCSE-Business-1BS0-June2022-Paper01-ExaminerReport.pdf",
+    "year_dir": "2022",
+    "series": "June2022",
+    "paper": "01",
+    "doctype": "ExaminerReport",
+    "size_bytes": 4886997,
+    "sha256_16": "9eea41b95e79c8b5"
+  },
+  {
+    "raw_filename": "1bs0-01-pef-20230824.pdf",
+    "organized_path": "organized/2023/Edexcel-GCSE-Business-1BS0-June2023-Paper01-ExaminerReport.pdf",
+    "year_dir": "2023",
+    "series": "June2023",
+    "paper": "01",
+    "doctype": "ExaminerReport",
+    "size_bytes": 5704339,
+    "sha256_16": "3da2124ea18aad73"
+  },
+  {
+    "raw_filename": "1bs0-01-pef-20240822.pdf",
+    "organized_path": "organized/2024/Edexcel-GCSE-Business-1BS0-June2024-Paper01-ExaminerReport.pdf",
+    "year_dir": "2024",
+    "series": "June2024",
+    "paper": "01",
+    "doctype": "ExaminerReport",
+    "size_bytes": 6791205,
+    "sha256_16": "4bb09d50df856fa0"
+  },
+  {
+    "raw_filename": "1bs0-01-que-20220521.pdf",
+    "organized_path": "organized/2022/Edexcel-GCSE-Business-1BS0-June2022-Paper01-QuestionPaper.pdf",
+    "year_dir": "2022",
+    "series": "June2022",
+    "paper": "01",
+    "doctype": "QuestionPaper",
+    "size_bytes": 878031,
+    "sha256_16": "37e0d3f0f30e49b4"
+  },
+  {
+    "raw_filename": "1bs0-01-que-20230519.pdf",
+    "organized_path": "organized/2023/Edexcel-GCSE-Business-1BS0-June2023-Paper01-QuestionPaper.pdf",
+    "year_dir": "2023",
+    "series": "June2023",
+    "paper": "01",
+    "doctype": "QuestionPaper",
+    "size_bytes": 1101393,
+    "sha256_16": "1cbcfba3725a3a03"
+  },
+  {
+    "raw_filename": "1bs0-01-que-20240515.pdf",
+    "organized_path": "organized/2024/Edexcel-GCSE-Business-1BS0-June2024-Paper01-QuestionPaper.pdf",
+    "year_dir": "2024",
+    "series": "June2024",
+    "paper": "01",
+    "doctype": "QuestionPaper",
+    "size_bytes": 829826,
+    "sha256_16": "f3495afc36f3a080"
+  },
+  {
+    "raw_filename": "1bs0-01-rms-20220825.pdf",
+    "organized_path": "organized/2022/Edexcel-GCSE-Business-1BS0-June2022-Paper01-MarkScheme.pdf",
+    "year_dir": "2022",
+    "series": "June2022",
+    "paper": "01",
+    "doctype": "MarkScheme",
+    "size_bytes": 275829,
+    "sha256_16": "d7a704b2b08bc3cf"
+  },
+  {
+    "raw_filename": "1bs0-01-rms-20230824.pdf",
+    "organized_path": "organized/2023/Edexcel-GCSE-Business-1BS0-June2023-Paper01-MarkScheme.pdf",
+    "year_dir": "2023",
+    "series": "June2023",
+    "paper": "01",
+    "doctype": "MarkScheme",
+    "size_bytes": 327249,
+    "sha256_16": "952dbdab75ddab54"
+  },
+  {
+    "raw_filename": "1bs0-01-rms-20240822.pdf",
+    "organized_path": "organized/2024/Edexcel-GCSE-Business-1BS0-June2024-Paper01-MarkScheme.pdf",
+    "year_dir": "2024",
+    "series": "June2024",
+    "paper": "01",
+    "doctype": "MarkScheme",
+    "size_bytes": 329582,
+    "sha256_16": "5bb90c356bf103ce"
+  },
+  {
+    "raw_filename": "1bs0-02-pef-20220224.pdf",
+    "organized_path": "organized/2021/Edexcel-GCSE-Business-1BS0-Nov2021-Paper02-ExaminerReport.pdf",
+    "year_dir": "2021",
+    "series": "Nov2021",
+    "paper": "02",
+    "doctype": "ExaminerReport",
+    "size_bytes": 178578,
+    "sha256_16": "5dd3733697e0e936"
+  },
+  {
+    "raw_filename": "1bs0-02-pef-20220825.pdf",
+    "organized_path": "organized/2022/Edexcel-GCSE-Business-1BS0-June2022-Paper02-ExaminerReport.pdf",
+    "year_dir": "2022",
+    "series": "June2022",
+    "paper": "02",
+    "doctype": "ExaminerReport",
+    "size_bytes": 5769686,
+    "sha256_16": "3aa78a7258499c86"
+  },
+  {
+    "raw_filename": "1bs0-02-pef-20230824.pdf",
+    "organized_path": "organized/2023/Edexcel-GCSE-Business-1BS0-June2023-Paper02-ExaminerReport.pdf",
+    "year_dir": "2023",
+    "series": "June2023",
+    "paper": "02",
+    "doctype": "ExaminerReport",
+    "size_bytes": 5926575,
+    "sha256_16": "d7aaa9e9b238e524"
+  },
+  {
+    "raw_filename": "1bs0-02-pef-20240822.pdf",
+    "organized_path": "organized/2024/Edexcel-GCSE-Business-1BS0-June2024-Paper02-ExaminerReport.pdf",
+    "year_dir": "2024",
+    "series": "June2024",
+    "paper": "02",
+    "doctype": "ExaminerReport",
+    "size_bytes": 5743475,
+    "sha256_16": "60fe0861711fac9f"
+  },
+  {
+    "raw_filename": "1bs0-02-que-20220614.pdf",
+    "organized_path": "organized/2022/Edexcel-GCSE-Business-1BS0-June2022-Paper02-QuestionPaper.pdf",
+    "year_dir": "2022",
+    "series": "June2022",
+    "paper": "02",
+    "doctype": "QuestionPaper",
+    "size_bytes": 1341042,
+    "sha256_16": "8c29003001ad44a2"
+  },
+  {
+    "raw_filename": "1bs0-02-que-20230613.pdf",
+    "organized_path": "organized/2023/Edexcel-GCSE-Business-1BS0-June2023-Paper02-QuestionPaper.pdf",
+    "year_dir": "2023",
+    "series": "June2023",
+    "paper": "02",
+    "doctype": "QuestionPaper",
+    "size_bytes": 793165,
+    "sha256_16": "2b5e3575bbe93074"
+  },
+  {
+    "raw_filename": "1bs0-02-que-20240606.pdf",
+    "organized_path": "organized/2024/Edexcel-GCSE-Business-1BS0-June2024-Paper02-QuestionPaper.pdf",
+    "year_dir": "2024",
+    "series": "June2024",
+    "paper": "02",
+    "doctype": "QuestionPaper",
+    "size_bytes": 2281911,
+    "sha256_16": "8e358c23ac5737e9"
+  },
+  {
+    "raw_filename": "1bs0-02-rms-20220825.pdf",
+    "organized_path": "organized/2022/Edexcel-GCSE-Business-1BS0-June2022-Paper02-MarkScheme.pdf",
+    "year_dir": "2022",
+    "series": "June2022",
+    "paper": "02",
+    "doctype": "MarkScheme",
+    "size_bytes": 300023,
+    "sha256_16": "f42dc56e77af25f8"
+  },
+  {
+    "raw_filename": "1bs0-02-rms-20230824.pdf",
+    "organized_path": "organized/2023/Edexcel-GCSE-Business-1BS0-June2023-Paper02-MarkScheme.pdf",
+    "year_dir": "2023",
+    "series": "June2023",
+    "paper": "02",
+    "doctype": "MarkScheme",
+    "size_bytes": 268174,
+    "sha256_16": "28fa37ff338072f1"
+  },
+  {
+    "raw_filename": "1bs0-02-rms-20240822.pdf",
+    "organized_path": "organized/2024/Edexcel-GCSE-Business-1BS0-June2024-Paper02-MarkScheme.pdf",
+    "year_dir": "2024",
+    "series": "June2024",
+    "paper": "02",
+    "doctype": "MarkScheme",
+    "size_bytes": 330712,
+    "sha256_16": "e976d35606eab843"
+  },
+  {
+    "raw_filename": "A0794a-GCSE-Business-Switching-Guide.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-SwitchingGuide.pdf",
+    "year_dir": "teaching",
+    "series": "SwitchingGuide",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 2132900,
+    "sha256_16": "8b8e1c3a81b125fc"
+  },
+  {
+    "raw_filename": "GCSE_Business_Subject_Guide.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-SubjectGuide.pdf",
+    "year_dir": "teaching",
+    "series": "SubjectGuide",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 235714,
+    "sha256_16": "38990c6ea680cb87"
+  },
+  {
+    "raw_filename": "GCSE_Business_exemplars_-_marked_student_responses_with_examiner_commentaryv2.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-Exemplars.pdf",
+    "year_dir": "teaching",
+    "series": "Exemplars",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 2301895,
+    "sha256_16": "aa36a232a722e93d"
+  },
+  {
+    "raw_filename": "PearsonEdexcel_GCSE_Business_9-mark_modelanswers_v4.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-9MarkModelAnswers.pdf",
+    "year_dir": "teaching",
+    "series": "ModelAnswers",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 317679,
+    "sha256_16": "83015fd8524eadae"
+  },
+  {
+    "raw_filename": "gcse-9-1-business-1bs0-getting-started-guide.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-GettingStartedGuide.pdf",
+    "year_dir": "teaching",
+    "series": "GettingStarted",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 1168465,
+    "sha256_16": "910e4c0115d30ecf"
+  },
+  {
+    "raw_filename": "gcse-business-booklet-guidance-v1.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-BookletGuidance.pdf",
+    "year_dir": "teaching",
+    "series": "BookletGuidance",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 922142,
+    "sha256_16": "ff982376f3b23662"
+  },
+  {
+    "raw_filename": "gcse-business-resource-bank-22-23.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-ResourceBank-22-23.pdf",
+    "year_dir": "teaching",
+    "series": "ResourceBank",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 4770831,
+    "sha256_16": "da6f424c798856ee"
+  },
+  {
+    "raw_filename": "gcse-business-spec-2017.pdf",
+    "organized_path": "organized/specimen/Edexcel-GCSE-Business-1BS0-Specification.pdf",
+    "year_dir": "specimen",
+    "series": "Specification",
+    "paper": "",
+    "doctype": "Specification",
+    "size_bytes": 532654,
+    "sha256_16": "f35ee37062781737"
+  },
+  {
+    "raw_filename": "gcse-business-studies-paper-1-case-study-1.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-PracticeCaseStudy-Paper01-CS1.pdf",
+    "year_dir": "teaching",
+    "series": "PracticeCaseStudy",
+    "paper": "01",
+    "doctype": "OtherMaterial",
+    "size_bytes": 465904,
+    "sha256_16": "12ec4039a697fd31"
+  },
+  {
+    "raw_filename": "gcse-business-studies-paper-1-case-study-2.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-PracticeCaseStudy-Paper01-CS2.pdf",
+    "year_dir": "teaching",
+    "series": "PracticeCaseStudy",
+    "paper": "01",
+    "doctype": "OtherMaterial",
+    "size_bytes": 585630,
+    "sha256_16": "c086c17cf56bac70"
+  },
+  {
+    "raw_filename": "gcse-business-studies-paper-1-case-study-3.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-PracticeCaseStudy-Paper01-CS3.pdf",
+    "year_dir": "teaching",
+    "series": "PracticeCaseStudy",
+    "paper": "01",
+    "doctype": "OtherMaterial",
+    "size_bytes": 661940,
+    "sha256_16": "2086b09939271ea7"
+  },
+  {
+    "raw_filename": "gcse-business-studies-paper-2-case-study-1.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-PracticeCaseStudy-Paper02-CS1.pdf",
+    "year_dir": "teaching",
+    "series": "PracticeCaseStudy",
+    "paper": "02",
+    "doctype": "OtherMaterial",
+    "size_bytes": 610292,
+    "sha256_16": "e4749b0dcb0e0189"
+  },
+  {
+    "raw_filename": "gcse-business-studies-paper-2-case-study-2.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-PracticeCaseStudy-Paper02-CS2.pdf",
+    "year_dir": "teaching",
+    "series": "PracticeCaseStudy",
+    "paper": "02",
+    "doctype": "OtherMaterial",
+    "size_bytes": 465670,
+    "sha256_16": "78b2944f7ff46609"
+  },
+  {
+    "raw_filename": "gcse-business-studies-paper-2-case-study-3.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-PracticeCaseStudy-Paper02-CS3.pdf",
+    "year_dir": "teaching",
+    "series": "PracticeCaseStudy",
+    "paper": "02",
+    "doctype": "OtherMaterial",
+    "size_bytes": 460473,
+    "sha256_16": "cddf4119427b52cc"
+  },
+  {
+    "raw_filename": "gcse-summer-2025-final.pdf",
+    "organized_path": "organized/support/Edexcel-gcse-summer-2025-final.pdf",
+    "year_dir": "support",
+    "series": "Timetable",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 1628613,
+    "sha256_16": "26ad398505132ea0"
+  },
+  {
+    "raw_filename": "gcse-summer-2026-final.pdf",
+    "organized_path": "organized/support/Edexcel-gcse-summer-2026-final.pdf",
+    "year_dir": "support",
+    "series": "Timetable",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 280797,
+    "sha256_16": "ca2d7ea6b8cddb9c"
+  },
+  {
+    "raw_filename": "gcse_business_specimen_1_paper_2_mark_scheme.pdf",
+    "organized_path": "organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet1-Paper02-SpecimenMarkScheme.pdf",
+    "year_dir": "specimen",
+    "series": "SpecimenSet1",
+    "paper": "02",
+    "doctype": "SpecimenMarkScheme",
+    "size_bytes": 61894,
+    "sha256_16": "4ce4afb0a7a101e1"
+  },
+  {
+    "raw_filename": "gcse_business_specimen_papers_set_2_paper_1_mark_scheme.pdf",
+    "organized_path": "organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet2-Paper01-SpecimenMarkScheme.pdf",
+    "year_dir": "specimen",
+    "series": "SpecimenSet2",
+    "paper": "01",
+    "doctype": "SpecimenMarkScheme",
+    "size_bytes": 65406,
+    "sha256_16": "925a8831b0747adb"
+  },
+  {
+    "raw_filename": "gcse_business_specimen_papers_set_2_paper_1_question_paper_1.pdf",
+    "organized_path": "organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet2-Paper01-SpecimenQuestionPaper.pdf",
+    "year_dir": "specimen",
+    "series": "SpecimenSet2",
+    "paper": "01",
+    "doctype": "SpecimenQuestionPaper",
+    "size_bytes": 1441047,
+    "sha256_16": "710b4fbcf94e225b"
+  },
+  {
+    "raw_filename": "gcse_business_specimen_papers_set_2_paper_2_mark_scheme.pdf",
+    "organized_path": "organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet2-Paper02-SpecimenMarkScheme.pdf",
+    "year_dir": "specimen",
+    "series": "SpecimenSet2",
+    "paper": "02",
+    "doctype": "SpecimenMarkScheme",
+    "size_bytes": 61724,
+    "sha256_16": "28c5fdabd3dbb115"
+  },
+  {
+    "raw_filename": "grade-boundaries-june-2024-gcse.pdf",
+    "organized_path": "organized/support/Edexcel-GCSE-grade-boundaries-june-2024-gcse.pdf",
+    "year_dir": "support",
+    "series": "GradeBoundaries",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 394949,
+    "sha256_16": "403eff5e8824aab3"
+  },
+  {
+    "raw_filename": "grade-boundaries-june-2025-gcse.pdf",
+    "organized_path": "organized/support/Edexcel-GCSE-grade-boundaries-june-2025-gcse.pdf",
+    "year_dir": "support",
+    "series": "GradeBoundaries",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 423052,
+    "sha256_16": "68230dc99d8a9f83"
+  },
+  {
+    "raw_filename": "grade-boundaries-june-2025-notional-component-gcse.pdf",
+    "organized_path": "organized/support/Edexcel-GCSE-grade-boundaries-june-2025-notional-component-gcse.pdf",
+    "year_dir": "support",
+    "series": "GradeBoundaries",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 455494,
+    "sha256_16": "af301f37ef14ca8f"
+  },
+  {
+    "raw_filename": "grade-boundaries-november-2024-gcse.pdf",
+    "organized_path": "organized/support/Edexcel-GCSE-grade-boundaries-november-2024-gcse.pdf",
+    "year_dir": "support",
+    "series": "GradeBoundaries",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 341253,
+    "sha256_16": "fda6336bedcee5bc"
+  },
+  {
+    "raw_filename": "pearson-edexcel-gcse-(9-1)-business-sams.pdf",
+    "organized_path": "organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined.pdf",
+    "year_dir": "specimen",
+    "series": "SpecimenSet1",
+    "paper": "",
+    "doctype": "SpecimenQuestionPaper",
+    "size_bytes": 5354304,
+    "sha256_16": "ccf47402e4c1c6b8"
+  },
+  {
+    "raw_filename": "pearson-edexcel-gcse-business-2021-paper1-questionpaper-newformat.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-2021NewFormatPracticePaper-Paper01.pdf",
+    "year_dir": "teaching",
+    "series": "PracticePaper",
+    "paper": "01",
+    "doctype": "OtherMaterial",
+    "size_bytes": 383626,
+    "sha256_16": "23d6552421b7514c"
+  },
+  {
+    "raw_filename": "pearson-edexcel-gcse-business-resource-map.pdf",
+    "organized_path": "organized/teaching/Edexcel-GCSE-Business-1BS0-ResourceMap.pdf",
+    "year_dir": "teaching",
+    "series": "ResourceMap",
+    "paper": "",
+    "doctype": "OtherMaterial",
+    "size_bytes": 250230,
+    "sha256_16": "bfe30579d9fc4370"
+  }
+]
