@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/chris/STUDY/edexcel_gscs_business_1bs0_archive/catalog/**)",
+      "Read(//Users/chris/STUDY/edexcel_gscs_business_1bs0_archive/logs/**)"
+    ]
+  }
+}
