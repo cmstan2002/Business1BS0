@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>1BS0/01 — Master Deck</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;margin:0;padding:0;background:#f4f4f7;color:#1c1c1e;line-height:1.5}
+.app{max-width:760px;margin:0 auto;padding:14px;min-height:100vh;display:flex;flex-direction:column}
+header{padding:4px 4px 8px}
+h1{font-size:17px;margin:0 0 4px 0;font-weight:600}
+.meta{font-size:12px;color:#6b6b70}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.pill{background:#fff;border:1px solid #d6d6db;padding:6px 11px;border-radius:14px;font-size:12px;cursor:pointer;user-select:none}
+.pill.active{background:#007aff;color:#fff;border-color:#007aff}
+.progress{height:4px;background:#e5e5ea;border-radius:2px;overflow:hidden;margin:6px 0 12px}
+.bar{height:100%;background:#34c759;transition:width .25s}
+.card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.05);flex:1;display:flex;flex-direction:column;min-height:60vh}
+.card-meta{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;font-size:11px}
+.tag{background:#eef2ff;color:#3730a3;padding:3px 8px;border-radius:8px;font-weight:500}
+.tag.type{background:#f0fdf4;color:#166534}
+.tag.spec{background:#fff7ed;color:#9a3412}
+.tag.num{background:#f3f4f6;color:#374151}
+.front-label,.back-label{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:#8e8e93;margin-bottom:6px;font-weight:600}
+.front{font-size:17px;font-weight:500;flex:1;padding-bottom:14px}
+.back{font-size:15px;border-top:1px solid #e5e5ea;padding-top:14px;flex:1}
+.back p{margin:0 0 10px 0}
+.back ul,.back ol{padding-left:20px;margin:0 0 10px 0}
+.back li{margin-bottom:5px}
+.back strong{font-weight:600}
+.back em{font-style:italic}
+.back table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}
+.back th,.back td{border:1px solid #d6d6db;padding:4px 8px;text-align:left}
+.why{margin-top:12px;padding-top:10px;border-top:1px dashed #e5e5ea;font-size:12px;color:#6b6b70;font-style:italic}
+.controls{display:flex;gap:6px;margin-top:14px}
+button.btn{flex:1;padding:13px 8px;border-radius:11px;border:0;font-size:14px;font-weight:600;cursor:pointer}
+.btn-show{background:#007aff;color:#fff}
+.btn-known{background:#34c759;color:#fff}
+.btn-review{background:#ff9500;color:#fff}
+.btn-prev,.btn-next{background:#e5e5ea;color:#1c1c1e}
+.btn-reset{background:#ff3b30;color:#fff;flex:0 0 auto;padding:6px 12px;font-size:11px;margin-left:auto}
+.audit{background:#fff;border-radius:14px;padding:16px;margin-top:14px;font-size:13px}
+.audit h2{font-size:14px;margin:0 0 6px 0}
+.audit ul{padding-left:18px;margin:0 0 10px 0}
+.hidden{display:none}
+.empty{text-align:center;padding:40px;color:#8e8e93}
+.topbar{display:flex;align-items:center;gap:8px}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<div class="topbar">
+<div style="flex:1">
+<h1>Edexcel GCSE Business 1BS0/01 &mdash; Master Deck</h1>
+<div class="meta" id="counter"></div>
+</div>
+<button class="btn btn-reset" onclick="resetProgress()">Reset</button>
+</div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="filters" id="topic-filters"></div>
+<div class="filters" id="type-filters"></div>
+<div class="filters">
+<span class="pill" id="due-pill" onclick="toggleDue()">Show only "Needs work"</span>
+<span class="pill" onclick="shuffle()">Shuffle</span>
+</div>
+</header>
+<div class="card" id="card">
+<div class="card-meta" id="card-meta"></div>
+<div class="front-label">Question</div>
+<div class="front" id="front"></div>
+<div id="back-wrap" class="hidden">
+<div class="back-label">Answer</div>
+<div class="back" id="back"></div>
+<div class="why" id="why"></div>
+</div>
+<div class="controls" id="controls"></div>
+</div>
+<div class="audit" id="audit">
+<h2>Deck audit</h2>
+<p><strong>Coverage:</strong> All five Paper 1 topics (1.1&ndash;1.5) with mixed card types: reasoning, scenario, compare, connection, trace/calculation, extended-response (6/9/12 mark), cloze and misconception. Heaviest coverage on extended-response and scenario, which yield the most marks.</p>
+<p><strong>Spec points covered:</strong> 1.1.1 dynamic nature; 1.1.2 risk &amp; reward; 1.1.3 adding value/USP; 1.1.4 entrepreneur role &amp; characteristics; 1.2.1 customer needs; 1.2.2 primary/secondary, qual/quant, sample, social; 1.2.3 segmentation; 1.2.4 competitive environment; 1.2.5 market mapping; 1.3.1 aims &amp; objectives (financial &amp; non-financial); 1.3.2 revenue, costs, profit, break-even, ARR, margin of safety; 1.3.3 cash &amp; cash-flow forecasts; 1.3.4 sources of finance; 1.4.1 ownership (sole, partnership, Ltd, franchise, limited liability); 1.4.2 location; 1.4.3 marketing mix; 1.4.4 business plan; 1.5.1 stakeholders &amp; conflicts; 1.5.2 technology; 1.5.3 consumer &amp; employment law; 1.5.4 economic context (interest, inflation, exchange, tax, income).</p>
+<p><strong>Lighter coverage / still to do:</strong> calculation drills could be expanded (especially break-even charts, percentage change in profit, cash-flow with multi-month carry). Specific employment-law cases (e.g. equality vs minimum wage) get one card each &mdash; could be doubled. Specific franchising mechanics (royalties, fees) only one card.</p>
+<p><strong>Suggested connection cards (for next batch):</strong></p>
+<ul>
+<li><em>Cash flow &times; segmentation:</em> how targeting a higher-income segment changes payment terms and therefore cash-flow risk.</li>
+<li><em>Stakeholders &times; marketing mix:</em> how a pressure-group campaign forces a change in Promotion or Product, even if customers are satisfied.</li>
+<li><em>Legal structure &times; sources of finance:</em> why an Ltd unlocks share capital and venture capital that a sole trader cannot access.</li>
+</ul>
+<p style="margin-top:10px;color:#6b6b70"><em>Tip: tap "Show answer", then mark "Got it" or "Needs work". Use the topic/type filters above to drill specific weaknesses. Progress saves automatically on this device.</em></p>
+</div>
+</div>
+<script>
+const cards = [
+{n:1,topic:'1.1',type:'Reasoning',spec:'1.1.1',
+front:`Why does the dynamic nature of business mean some firms fail even when they were successful five years ago?`,
+back:`<p>Customer needs change (e.g. preference for plant-based food), technology evolves (e.g. streaming over DVDs), and competitors innovate. A business that does not adapt its product, processes or marketing finds its USP eroded; demand falls, revenue drops below the level needed to cover fixed costs, and it can no longer compete on price or value.</p><p>So the failure isn't because the firm got <em>worse</em> &mdash; it's because the market moved past it.</p>`,
+why:`Forces the student to internalise that "dynamic" means survival depends on continuous change, not one-time success.`},
+
+{n:2,topic:'1.1',type:'Scenario',spec:'1.1.2',
+front:`Maya invents a reusable beeswax food wrap. Her friend says "you've already got the idea, that's the hard bit". Identify TWO risks Maya still faces and explain how each could realistically lead to business failure.`,
+back:`<ul><li><strong>Financial risk &mdash; running out of cash before revenue catches up.</strong> Maya pays upfront for beeswax, fabric and packaging; if customers are slow to buy, her cash outflows exceed inflows and she becomes insolvent &mdash; even if the product is good.</li><li><strong>Risk of market rejection.</strong> She may have misread demand: if customers stick with cling film because it's cheaper, her sales will be too low to cover fixed costs and she'll have to close.</li></ul><p>Other valid risks: competition, supplier failure, personal financial loss.</p>`,
+why:`Pushes past the cliché that "having an idea is the hard bit" &mdash; the real risks come <em>after</em>.`},
+
+{n:3,topic:'1.1',type:'Compare',spec:'1.1.2',
+front:`A self-employed plumber and the founder of a small chain of dental practices both took risks to start their business. Compare the type of <em>reward</em> each is most likely chasing.`,
+back:`<ul><li><strong>Plumber:</strong> independence and a steady wage &mdash; reward is mainly <strong>personal satisfaction</strong> and being his own boss. Profit is tied to his own labour, so growth is naturally capped.</li><li><strong>Dental chain founder:</strong> scalable <strong>profit and business growth</strong> &mdash; reward grows with the business, not with their own hours. More likely to reinvest profit, take on debt and chase market share.</li></ul><p>Same risk type (financial/personal), very different reward shape.</p>`,
+why:`Builds the link between scale of ambition and shape of reward.`},
+
+{n:4,topic:'1.1',type:'Reasoning',spec:'1.1.3',
+front:`How can a business "add value" without changing the physical product at all?`,
+back:`<p>By changing the <em>perception</em> or the <em>experience</em> around it. Methods that don't touch the product itself:</p><ul><li>Branding (a logo on a plain T-shirt)</li><li>Convenience (delivery, longer opening hours)</li><li>Service quality (knowledgeable staff, fast checkout)</li><li>Packaging and design</li><li>Location (charging more in an airport)</li><li>A unique selling point that competitors can't copy</li></ul><p>Customers pay a premium because they perceive more value, even though the underlying good is identical.</p>`,
+why:`Crucial distinction between value (perceived) and cost (physical).`},
+
+{n:5,topic:'1.1',type:'Misconception',spec:'1.1.4',
+front:`"An entrepreneur's main job is to come up with the business idea." Why is this only partly right?`,
+back:`<p>The idea is the <em>start</em>, not the job. The entrepreneur's ongoing role is:</p><ul><li><strong>Organising the resources</strong> (people, capital, premises)</li><li><strong>Making the business decisions</strong> (price, suppliers, hiring)</li><li><strong>Taking the financial risk</strong> personally</li></ul><p>Many successful businesses run on someone else's idea &mdash; the entrepreneur's value is execution, not invention.</p>`,
+why:`Corrects the "lightbulb-moment" myth.`},
+
+{n:6,topic:'1.1',type:'Extended-response',spec:'1.1.1',
+front:`<strong>Analyse</strong> how the dynamic nature of business creates <em>opportunities</em> for new entrepreneurs. (6 marks)`,
+back:`<p><strong>Point 1 (AO1b):</strong> Changes in technology create new product or service categories that did not exist before &mdash; e.g. apps, AI tools, smart-home devices.</p><p><strong>Develop (AO3a):</strong> Entrepreneurs can enter these new categories before large incumbents have established a brand, meaning competition is initially low and barriers such as customer loyalty are weak.</p><p><strong>Link (AO3a):</strong> This allows a small start-up to capture market share quickly, generate revenue and grow, which would be much harder in a mature market.</p><p><strong>Point 2 (AO1b):</strong> Changes in what consumers want (e.g. ethical, plant-based, second-hand) open gaps in existing markets.</p><p><strong>Develop (AO3a):</strong> Established firms are often slow to react because they have invested in existing product lines and supply chains.</p><p><strong>Link (AO3a):</strong> A new entrepreneur can exploit this lag by offering a focused, specialised product that meets the new need &mdash; building a USP and customer base.</p><p><em>Mark scheme: Level 3 (5&ndash;6) = detailed application + interconnected chains of reasoning (AO1b + AO3a).</em></p>`,
+why:`Trains the AO1b → AO3a chain examiners reward.`},
+
+{n:7,topic:'1.1',type:'Cloze',spec:'1.1.3',
+front:`A unique selling point (USP) is the feature of a product or service that <strong>{{c1}}</strong> and gives customers a reason to choose it.`,
+back:`<p><strong>differentiates it from competitors</strong></p><p>Without a USP, a small business is forced to compete on price &mdash; usually a losing battle against larger, lower-cost rivals.</p>`,
+why:``},
+
+{n:8,topic:'1.1',type:'Scenario',spec:'1.1.2',
+front:`Two friends, Ben and Joel, both quit their jobs to start businesses on the same day. Ben opens a sushi takeaway in a town that already has three. Joel opens the only mobile dog-grooming service in his area. Whose risk profile is higher, and why?`,
+back:`<p><strong>Ben's</strong> risk is higher in the short term. He's entering a saturated market where customers already have established loyalty, so he must compete on price, quality or location &mdash; fixed costs (rent, equipment, fish suppliers) start immediately while demand has to be <em>won</em> from rivals.</p><p>Joel faces a genuine demand gap; his risk is more about whether enough customers exist at all, not whether he can beat rivals.</p><p>Risk type matters: Ben = competitive risk; Joel = market-size risk.</p>`,
+why:`Distinguishes types of risk rather than treating "risk" as one thing.`},
+
+{n:9,topic:'1.1',type:'Misconception',spec:'1.1.2',
+front:`"If a business has a great idea, taking financial risk is unnecessary." Why is this wrong?`,
+back:`<p>Risk is unavoidable because the entrepreneur must commit money <em>before</em> knowing whether customers will actually pay. They have to buy stock, pay rent, hire staff and market the product on the assumption that revenue will follow.</p><p>Even a great idea can fail because of timing, competitor reaction, recession or supplier problems &mdash; none of which the entrepreneur controls. Risk is the price of going first.</p>`,
+why:`Frames risk as structural, not a sign of a weak plan.`},
+
+{n:10,topic:'1.1',type:'Connection',spec:'1.1.3',
+front:`How does adding value (1.1.3) reduce a small business's vulnerability to a competitor cutting prices?`,
+back:`<p>If a business competes only on price, a larger competitor with lower costs can undercut it and win customers.</p><p>Adding value &mdash; through branding, design, service or convenience &mdash; gives customers a non-price reason to stay. They may even pay <em>more</em> because of the perceived value, so a price cut by the rival doesn't automatically transfer demand.</p><p>Added value insulates the small business from price competition.</p>`,
+why:`Welds adding-value to competitive environment thinking.`},
+
+{n:11,topic:'1.1',type:'Reasoning',spec:'1.3.1',
+front:`Why might a business say its aim is "survival" rather than "profit" in its first year?`,
+back:`<p>In year one, fixed costs (rent, equipment, marketing) are usually much higher than revenue from a small initial customer base, so the business often makes a loss.</p><p>Aiming for survival means staying solvent &mdash; keeping enough cash to pay bills until sales build up. Profit is unrealistic; survival is the prerequisite for the longer-term aims (profit, growth, market share) to even be possible.</p>`,
+why:`Makes "survival" a meaningful, non-obvious objective rather than a vague word.`},
+
+{n:12,topic:'1.1',type:'Scenario',spec:'1.1.3',
+front:`An entrepreneur opens a coffee shop and identifies "convenience" as her USP. List THREE <em>operational</em> decisions she'd need to make consistent with that USP.`,
+back:`<ul><li><strong>Location:</strong> near commuter routes, station, or office cluster &mdash; high footfall, walk-in.</li><li><strong>Opening hours:</strong> very early (e.g. 6am) and possibly late, to suit commuters.</li><li><strong>Order/payment system:</strong> mobile pre-order or contactless-only checkout to keep queue times short.</li></ul><p>Also valid: drive-through, delivery partnership, simplified menu for speed.</p><p>Each must serve "I get my coffee fast", not "I have a beautiful experience".</p>`,
+why:`Forces alignment between USP and operating choices &mdash; examiners love coherence.`},
+
+{n:13,topic:'1.1',type:'Compare',spec:'1.1.4',
+front:`An entrepreneur is "organised", "creative" and "willing to take risks". Which of these matters most when something <em>goes wrong</em> in year one &mdash; and why?`,
+back:`<p>Being <strong>organised</strong> matters most when things go wrong. Creativity helps generate the idea; risk-tolerance got them to start; but in a crisis (a big customer not paying, a supplier failing), the decisive trait is the ability to react methodically &mdash; track cash, reschedule, prioritise.</p><p>A creative but disorganised founder may have a great product <em>and</em> run out of cash before fixing the problem.</p>`,
+why:`Pushes past the list of entrepreneur traits to which trait does what work, when.`},
+
+{n:14,topic:'1.1',type:'Reasoning',spec:'1.1.1',
+front:`Why is "meeting customer needs" sometimes a <em>moving target</em> rather than a one-off achievement?`,
+back:`<p>Customer expectations are reset constantly by competitors, technology and culture. Once one rival offers free next-day delivery or a sustainable option, that becomes the new baseline &mdash; not a differentiator.</p><p>So a business that "met needs" last year may not meet them this year because the <em>needs</em> themselves have evolved. This is also why adding value is an ongoing activity, not a feature.</p>`,
+why:`Connects dynamic nature → customer needs → adding-value loop.`},
+
+{n:15,topic:'1.1',type:'Scenario',spec:'1.1.4',
+front:`Lena's bakery sells well but she's exhausted, working 80-hour weeks. A consultant tells her she needs to "reduce her role to taking risks and making decisions" rather than baking herself. What's the consultant's logic?`,
+back:`<p>The roles of an entrepreneur are organising resources, making decisions, taking risks and (often) producing in the early days. As the business grows, doing all four limits scale &mdash; Lena's time becomes the bottleneck.</p><p>By hiring bakers (resources) and stepping back to <em>decisions</em> and <em>risk-bearing</em>, she frees up time to plan growth, secure finance and react to problems. The business can grow beyond what one pair of hands can produce.</p>`,
+why:`Distinguishes "founder who bakes" from "entrepreneur who runs a bakery".`},
+
+{n:16,topic:'1.1',type:'Misconception',spec:'1.1.3',
+front:`"Adding value just means making something more expensive." Why is that backwards?`,
+back:`<p>It's the wrong direction of causation. Adding value means making customers <em>willing to pay</em> more &mdash; through branding, quality, design, service, convenience or USP &mdash; so the higher price is sustainable.</p><p>Just raising the price without adding value loses customers, because they have no reason to pay it. Value comes first; the price follows.</p>`,
+why:`Common student error &mdash; treats price as cause not effect.`},
+
+{n:17,topic:'1.1',type:'Connection',spec:'1.2.1',
+front:`Why do consumer needs and market gaps tend to <em>appear together</em> rather than separately?`,
+back:`<p>A market gap exists <em>because</em> a customer need is unmet. The need (e.g. quick healthy lunches for office workers) is the underlying force; the gap (no salad bar near a business park) is the visible symptom.</p><p>Spotting the gap without understanding the need leads to copycat businesses; understanding the need without spotting where it's unmet leads to ideas with no entry point. Entrepreneurs need both.</p>`,
+why:`Sets up the bridge between Topic 1.1 and Topic 1.2.`},
+
+{n:18,topic:'1.1',type:'Extended-response',spec:'1.1.4',
+front:`<em>Sports Tours Ltd</em> is a small business organising sports tours for school teams, run by founder Priya. <strong>Discuss</strong> the impact on Sports Tours Ltd of Priya remaining the <em>sole</em> decision-maker as the business grows. (9 marks)`,
+back:`<p><strong>Para 1 &mdash; Benefit (AO2 + AO3a):</strong> Priya's sole control means decisions are fast &mdash; she can quote a school the next day, change destinations when flights are cancelled, and negotiate directly with hotels. For a small tour operator, speed and flexibility are competitive advantages because schools often book on short notice. This protects margins (no committee delays) and builds direct relationships, increasing repeat bookings.</p><p><strong>Para 2 &mdash; Drawback (AO2 + AO3a):</strong> As the number of tours grows, Priya becomes the bottleneck. She has to approve insurance, sign supplier contracts and answer customer queries, all in finite hours. Errors increase (missed emails, late confirmations) and she risks burnout.</p><p><strong>Para 3 &mdash; Drawback (AO2 + AO3a):</strong> Sole decision-making means narrower expertise. Priya may be strong on logistics but weaker on marketing or finance. Without specialist input, opportunities (e.g. social-media advertising, new sports markets) are missed and risks (e.g. exchange-rate exposure on European tours) go unmanaged.</p><p><strong>Para 4 &mdash; Judgement (AO3b):</strong> On balance, sole decision-making suits the <em>small</em> phase but becomes a liability as the business grows. The point at which Priya should delegate is when revenue lost to slow response (her being overworked) exceeds the cost of hiring a manager. For a sports tour business with seasonal demand peaks, that point arrives quickly &mdash; so the impact is initially positive but, without delegation, becomes a brake on growth.</p><p><em>Level 3 (7&ndash;9) = detailed application throughout, interconnected reasoning, justified judgement.</em></p>`,
+why:`Models the 9-mark "discuss with context" structure including the AO3b judgement.`},
+
+{n:19,topic:'1.2',type:'Reasoning',spec:'1.2.2',
+front:`Why might a survey of 50 customers be more useful to a small bakery than a survey of 5,000 in the wider region?`,
+back:`<p>Statistical accuracy isn't the only goal. The bakery's catchment area is narrow &mdash; most customers live within walking distance &mdash; so 50 <em>local</em> responses are more representative of its actual market than 5,000 spread over a region most of whom will never visit.</p><p>Bigger samples are only better when they reach the <em>right</em> people. Cost matters too: a small business can't afford 5,000 responses, and the data wouldn't change its decisions.</p>`,
+why:`Corrects the "more = better" assumption about samples.`},
+
+{n:20,topic:'1.2',type:'Compare',spec:'1.2.2',
+front:`When should a start-up use <em>primary</em> research and when <em>secondary</em>?`,
+back:`<ul><li><strong>Secondary first:</strong> when the entrepreneur needs to size the market, understand competitors, or get an industry overview. It's cheap (Google, gov stats, trade reports) and answers "is this even a market?".</li><li><strong>Primary second:</strong> when they need answers specific to <em>their</em> product, <em>their</em> prices, <em>their</em> location &mdash; questions secondary research can't answer because nobody has studied this exact business yet.</li></ul><p>Order matters: secondary informs whether to bother with primary; primary tests the specific concept.</p>`,
+why:`Sequencing rather than just defining.`},
+
+{n:21,topic:'1.2',type:'Scenario',spec:'1.2.2',
+front:`Owner of a children's clothing shop says "I don't need market research, I've got 20 years of retail experience". Identify TWO concrete things she will get <em>wrong</em> by skipping research.`,
+back:`<ul><li><strong>She'll misread the <em>current</em> market.</strong> Twenty years ago customers shopped in person; now most price-check on Instagram and Vinted. Without research she'll over-invest in shop fittings and under-invest in social media.</li><li><strong>She'll misjudge price points for this specific town.</strong> Her experience may have been in a wealthier or different-demographic area; without local primary research she'll either price too high (no demand) or too low (margin too thin to cover rent).</li></ul><p>Experience tells you patterns; research tells you whether those patterns still apply <em>here, now</em>.</p>`,
+why:`Forces the student to defend the <em>purpose</em> of research, not just describe methods.`},
+
+{n:22,topic:'1.2',type:'Misconception',spec:'1.2.2',
+front:`"Quantitative data is more reliable than qualitative data because it has numbers." Why is this misleading?`,
+back:`<p>Numbers feel objective but only answer "what" and "how many" &mdash; they don't explain <em>why</em> customers behave as they do.</p><p>Qualitative data (interviews, focus groups) reveals motivation, which is often what the business decision actually depends on. A survey saying 70% of customers "won't return" is useless without qualitative input on <em>why</em>.</p><p>Reliable research usually combines both.</p>`,
+why:`Targets a common GCSE essay error.`},
+
+{n:23,topic:'1.2',type:'Reasoning',spec:'1.2.2',
+front:`Why does social media give a small business cheap, <em>biased</em> market research?`,
+back:`<ul><li><strong>Cheap:</strong> posts, polls, comments and follower data are free; reach is large; responses are quick.</li><li><strong>Biased:</strong> the people engaging are already your followers &mdash; they self-selected because they like you. Their views aren't representative of <em>non-customers</em>, which is exactly the group a business needs to reach to grow.</li></ul><p>So social-media data is great for refining what existing fans like, but unreliable for testing whether a new market segment will buy.</p>`,
+why:`Makes the bias issue explicit, which strong answers explain.`},
+
+{n:24,topic:'1.2',type:'Cloze',spec:'1.2.3',
+front:`Market segmentation divides a market into groups of customers with <strong>{{c1}}</strong>, so that products and marketing can be targeted more effectively.`,
+back:`<p><strong>similar characteristics or needs</strong></p><p>Common bases: location, demographics (age, gender, income), lifestyle, life stage. Choose the basis that best predicts purchase behaviour for your product.</p>`,
+why:``},
+
+{n:25,topic:'1.2',type:'Scenario',spec:'1.2.3',
+front:`A new gym wants to choose between targeting (a) over-60s, (b) university students, (c) shift-working nurses. For each, give ONE marketing or operational decision that segment forces.`,
+back:`<ul><li><strong>Over-60s:</strong> off-peak daytime classes (low-impact, social), accessible facilities, paper or phone bookings as well as app &mdash; pricing emphasising health/independence.</li><li><strong>University students:</strong> term-time pricing, late-night opening, social-media-only marketing, group/friends discounts, music-led classes.</li><li><strong>Shift-working nurses:</strong> 24-hour or very-early-morning access, monthly rather than annual contracts (shifts change), proximity to hospitals.</li></ul><p>Each segment dictates different opening hours, pricing, and marketing channel &mdash; a single "gym" can't serve all three well at once.</p>`,
+why:`Trains application &mdash; segments aren't labels, they're operational constraints.`},
+
+{n:26,topic:'1.2',type:'Reasoning',spec:'1.2.4',
+front:`Why does identifying who your competitors <em>really</em> are matter more than identifying <em>what</em> they sell?`,
+back:`<p>Two firms can sell different products yet compete for the same customer wallet &mdash; a cinema and a restaurant compete for "Saturday night out" spend, even though one sells films and the other sells food.</p><p>If a business defines competitors only by product (other cinemas), it misses substitute threats and over-trusts its market share. Defining competitors by <em>the customer need being served</em> gives a more accurate picture of the competitive environment.</p>`,
+why:`Conceptual depth &mdash; many students think competition = same product.`},
+
+{n:27,topic:'1.2',type:'Compare',spec:'1.2.5',
+front:`A new market-mapping exercise places your business in a sparsely-occupied quadrant. That could be brilliant news or terrible news. Why both?`,
+back:`<ul><li><strong>Brilliant:</strong> an underserved gap with little competition &mdash; first-mover advantage, easier to build market share.</li><li><strong>Terrible:</strong> the quadrant might be empty <em>because there's no demand</em>. Other businesses already tested it and customers didn't want it.</li></ul><p>Market mapping shows the <em>position</em> but not the <em>demand</em>. To know which case you're in, you need additional primary research with potential customers in that segment.</p>`,
+why:`Forces interpretation rather than mechanical use of the tool.`},
+
+{n:28,topic:'1.2',type:'Misconception',spec:'1.2.5',
+front:`"Market mapping shows you where the gaps are, so you should always aim for an empty space." Why is this dangerous?`,
+back:`<p>An empty space can mean (a) genuinely unmet need or (b) a place customers don't want to go. The map only plots competitors &mdash; not demand.</p><p>A business that aims at an empty quadrant without testing demand can spend money setting up, only to find no one wanted "luxury budget" or "premium-cheap" because the position itself is incoherent.</p><p>Mapping is a starting point for hypotheses, not a verdict.</p>`,
+why:`Common student trap.`},
+
+{n:29,topic:'1.2',type:'Scenario',spec:'1.2.2',
+front:`A small chocolate maker carries out a focus group and discovers customers want "more ethical sourcing". Suggest ONE risk and ONE benefit of acting on this finding.`,
+back:`<ul><li><strong>Benefit:</strong> ethical sourcing can become a USP, justifying premium pricing and creating a story for marketing &mdash; increasing customer loyalty and word-of-mouth.</li><li><strong>Risk:</strong> focus groups give socially-acceptable answers. Customers say they care about ethics; in the shop, many still pick the cheaper bar. If the maker raises prices to fund Fair-Trade beans and customers don't actually pay extra, margins fall and the change destroys the business.</li></ul><p>Qualitative data should be triangulated with sales tests before committing.</p>`,
+why:`Trains scepticism about stated vs revealed preference.`},
+
+{n:30,topic:'1.2',type:'Reasoning',spec:'1.2.4',
+front:`Why does a strong competitor's <em>weakness</em> sometimes matter more to a small entrant than its strength?`,
+back:`<p>A small entrant can't outcompete a large rival on overall strength (price, scale, brand). But by targeting a specific weakness &mdash; slow service, poor customer support, narrow product range &mdash; the small entrant can win the customers most frustrated by that gap.</p><p>Those customers are the most willing to switch and the cheapest to acquire. Competitor analysis should map weaknesses → potential customer segments, not just "what they're good at".</p>`,
+why:`Strategy thinking, not memorising.`},
+
+{n:31,topic:'1.2',type:'Extended-response',spec:'1.2.2',
+front:`<strong>Discuss</strong> the impact of using <em>only</em> secondary research on a new restaurant's launch decisions. (6 marks)`,
+back:`<p><strong>Point 1 &mdash; Benefit (AO1b):</strong> Secondary research is cheap and fast.</p><p><strong>Develop (AO3a):</strong> A start-up restaurant on a tight budget can quickly read industry reports on dining trends and government data on local population, helping it decide on cuisine type and broad pricing without spending on surveys.</p><p><strong>Link (AO3a):</strong> This means the entrepreneur preserves cash for actual launch costs (premises, equipment), reducing financial risk.</p><p><strong>Point 2 &mdash; Drawback (AO1b):</strong> Secondary research is general, not specific to <em>this</em> business or location.</p><p><strong>Develop (AO3a):</strong> It cannot tell the owner whether <em>residents within walking distance</em> prefer Italian to Thai, or what they're willing to pay for a main course.</p><p><strong>Link (AO3a):</strong> Without primary data the owner risks pricing the menu wrongly or choosing a cuisine local people won't buy, leading to weak demand and possible failure.</p>`,
+why:`A clean Level-3 chain practice.`},
+
+{n:32,topic:'1.2',type:'Connection',spec:'1.2.3',
+front:`How does market segmentation (1.2.3) influence a small business's choice of <em>promotion</em> (part of 1.4.3)?`,
+back:`<p>The segment defines the channel and message.</p><ul><li>Targeting Gen-Z students → TikTok and Instagram, short-form video, peer-style language.</li><li>Targeting over-60s → local newspaper, leaflet drops, clear print.</li></ul><p>Same product, different segment, different promotion budget allocation. Without identifying the segment first, promotion spend is scattered across channels and most of it reaches the wrong people.</p>`,
+why:`Welds segmentation to marketing mix.`},
+
+{n:33,topic:'1.2',type:'Scenario',spec:'1.2.4',
+front:`A bookshop competes against Amazon. Identify TWO ways its competitive <em>strengths</em> are different in kind from Amazon's, and explain why this changes the bookshop's strategy.`,
+back:`<ul><li><strong>Curation:</strong> the owner can recommend titles based on local taste and personal knowledge &mdash; Amazon's algorithm can't replicate the human relationship.</li><li><strong>Experience:</strong> browsing physical shelves, attending author events, building community &mdash; Amazon offers transactional speed, not place.</li></ul><p><strong>Strategy:</strong> rather than competing on price (where Amazon wins on scale), the bookshop should lean into curation and experience as USPs, charge sustainable prices and treat the shop as a destination, not a warehouse.</p>`,
+why:`Practical "play to your strengths" thinking.`},
+
+{n:34,topic:'1.2',type:'Misconception',spec:'1.2.4',
+front:`"If a market is competitive, it's not worth entering." Why is this often wrong?`,
+back:`<p>A competitive market is often <em>evidence that demand exists</em> &mdash; many customers, predictable revenue patterns, established suppliers.</p><p>The harder question isn't "is there competition?" but "can I differentiate?". A new entrant that finds a specific underserved segment or a real USP can succeed in a crowded market, while an unchallenged "blue ocean" might just mean nobody wants it.</p>`,
+why:`Reframes competition as signal, not just threat.`},
+
+{n:35,topic:'1.2',type:'Reasoning',spec:'1.2.2',
+front:`Why might quantitative <em>and</em> qualitative research together be greater than the sum of their parts?`,
+back:`<p>Quantitative tells you <em>what</em> (e.g. 60% of customers under 25 stopped buying). Qualitative tells you <em>why</em> (focus groups: "the packaging looks dated").</p><p>Each alone leads to wrong action &mdash; the number alone might trigger a price cut; the quote alone might trigger a redesign that doesn't actually move the 60%. Combined, you change the <em>thing customers cited</em> and verify with new sales numbers. The two methods cross-check each other.</p>`,
+why:`Drives genuine methodological understanding.`},
+
+{n:36,topic:'1.2',type:'Scenario',spec:'1.2.5',
+front:`A new vegan ice-cream brand maps the market. Major competitors are clustered as "premium / dairy". The brand sees a free quadrant: "premium / vegan". Should it enter? What would you check first?`,
+back:`<p>Position alone doesn't validate demand. Before launching, check:</p><ol><li><strong>Segment size</strong> &mdash; is there a population large enough in their area or online to support premium-vegan ice cream?</li><li><strong>Willingness to pay</strong> &mdash; vegan customers may also be price-sensitive.</li><li><strong>Substitution</strong> &mdash; are customers already satisfied with cheaper own-brand vegan tubs at supermarkets?</li></ol><p>If 1&ndash;3 hold, the gap is real; if not, the empty quadrant is empty for a reason.</p>`,
+why:`Reinforces "map shows position, not demand".`},
+
+{n:37,topic:'1.2',type:'Reasoning',spec:'1.2.3',
+front:`Why might a business segment by <em>lifestyle</em> rather than by <em>age</em> or <em>income</em>?`,
+back:`<p>Two 35-year-olds on the same income can have very different buying patterns &mdash; one cooks every night, one eats out four times a week.</p><p>Age and income are easy to measure but blunt; lifestyle (commuter, parent, fitness-focused, eco-conscious) tracks actual buying behaviour more closely.</p><p>So a meal-kit company is better off marketing to "busy young professional cooks" than to "25&ndash;35-year-olds earning £30k+".</p>`,
+why:`Demographic vs psychographic segmentation done well.`},
+
+{n:38,topic:'1.2',type:'Extended-response',spec:'1.2.2',
+front:`<em>Bloom &amp; Co</em> is a small online florist. Two market-research options are on the table:<br><strong>Option 1:</strong> Paid customer survey of 800 UK adults via a research agency (£3,000).<br><strong>Option 2:</strong> Free Instagram poll of existing followers (~4,000) plus 8 in-depth interviews with recent customers.<br><br><strong>Justify</strong> which option Bloom &amp; Co should choose. (12 marks)`,
+back:`<p><strong>Recommendation: Option 2.</strong></p><p><strong>Para 1 &mdash; Application (AO2):</strong> Bloom &amp; Co is a small business with limited cash. £3,000 is significant compared with what it likely spends on stock or marketing. As an online business, its existing customer base is reachable digitally for free, and its product (flowers) has emotional and visual elements that benefit from qualitative insight.</p><p><strong>Para 2 &mdash; Analysis of Option 2 (AO3a):</strong> The Instagram poll reaches a highly relevant population &mdash; actual customers and warm prospects &mdash; at zero cost. The 8 interviews provide the <em>why</em>: which arrangements customers buy for, what triggered the order, what nearly stopped them buying. Combined, these give Bloom &amp; Co both quantitative direction and qualitative depth.</p><p><strong>Para 3 &mdash; Counter-analysis of Option 1 (AO3a):</strong> A paid 800-person survey is statistically robust but most respondents are not Bloom &amp; Co customers &mdash; many do not buy flowers online or at all. The data is generic and won't tell Bloom &amp; Co what <em>its</em> customers value. Spending £3,000 on near-irrelevant data starves the cash needed for stock or paid ads.</p><p><strong>Para 4 &mdash; Counterpoint (AO3b):</strong> A weakness of Option 2 is bias &mdash; Instagram followers are self-selected enthusiasts and won't reveal why <em>non-customers</em> don't buy. So the option doesn't help expand the segment.</p><p><strong>Para 5 &mdash; Judgement (AO3b):</strong> On balance, Option 2 is the right choice for Bloom &amp; Co at this size. The paid survey would only be justified once the business has cash to grow into new segments. For now, deeper data on the <em>existing</em> base is more actionable, fits the budget, and reduces financial risk.</p>`,
+why:`Models a full 12-mark Justify with two real options.`},
+
+{n:39,topic:'1.3',type:'Trace',spec:'1.3.2',
+front:`A bakery sells loaves at £3.50. Variable cost per loaf is £1.20, fixed costs are £6,900 per month. Calculate (a) the break-even quantity in loaves, (b) the margin of safety if it sells 4,000 loaves a month.`,
+back:`<p><strong>(a)</strong> Contribution per loaf = £3.50 &minus; £1.20 = £2.30<br>Break-even = Fixed costs &divide; Contribution = £6,900 &divide; £2.30 = <strong>3,000 loaves</strong>.</p><p><strong>(b)</strong> Margin of safety = Actual sales &minus; Break-even = 4,000 &minus; 3,000 = <strong>1,000 loaves</strong> (25% of actual sales).</p>`,
+why:`Drills the formula via a coherent scenario.`},
+
+{n:40,topic:'1.3',type:'Trace',spec:'1.3.2',
+front:`Total revenue last quarter was £42,000; total costs £37,800. The business borrowed £10,000 at 8% annual interest. Calculate (a) operating profit and (b) net profit for the quarter (assume interest accrues evenly).`,
+back:`<p><strong>(a)</strong> Operating profit = Revenue &minus; Total costs = £42,000 &minus; £37,800 = <strong>£4,200</strong>.</p><p><strong>(b)</strong> Annual interest = 8% &times; £10,000 = £800. Quarterly interest = £800 &divide; 4 = £200.<br>Net profit = £4,200 &minus; £200 = <strong>£4,000</strong>.</p>`,
+why:`Layers interest cost on top of a familiar formula.`},
+
+{n:41,topic:'1.3',type:'Reasoning',spec:'1.3.3',
+front:`Why is profit <em>not</em> the same as cash, even for a profitable business?`,
+back:`<p>Profit is calculated when a sale is <em>made</em> (or invoiced), not when the customer <em>pays</em>. A business can have £50k of profit on paper but £0 in the bank if customers haven't paid yet &mdash; meanwhile rent, wages and suppliers all want cash <em>now</em>.</p><p>Profit is the long-term scoreboard; cash is what keeps you alive day-to-day. Many profitable businesses fail because they run out of cash before invoices are paid.</p>`,
+why:`Builds the most important conceptual distinction in 1.3.`},
+
+{n:42,topic:'1.3',type:'Scenario',spec:'1.3.3',
+front:`A florist's cash-flow forecast shows opening balance £1,200 in January, expected inflows £8,500, expected outflows £10,400. Should she be worried &mdash; and what could she do <em>before</em> January starts?`,
+back:`<p>Closing balance = £1,200 + £8,500 &minus; £10,400 = <strong>&minus;£700</strong>. Yes &mdash; she'll be insolvent if no action is taken.</p><p>Options <em>before</em> January:</p><ol><li>Negotiate trade credit or delayed payment terms with suppliers (push outflows into Feb).</li><li>Arrange an overdraft to cover the £700 (cheap if short-term).</li><li>Chase early payment from corporate customers (pull inflows forward).</li><li>Cut a non-essential outflow (e.g. delay equipment purchase).</li></ol><p>The forecast is most valuable <em>because</em> it gives her time to act before the crisis.</p>`,
+why:`Connects forecast → action, the whole point of the tool.`},
+
+{n:43,topic:'1.3',type:'Trace',spec:'1.3.3',
+front:`Cash-flow extract:<table><tr><th></th><th>Mar</th><th>Apr</th></tr><tr><td>Opening balance</td><td>£1,500</td><td>?</td></tr><tr><td>Inflows</td><td>£6,200</td><td>£7,000</td></tr><tr><td>Outflows</td><td>£6,800</td><td>£5,900</td></tr></table>Calculate March and April closing balances.`,
+back:`<p><strong>March:</strong> Net cash flow = £6,200 &minus; £6,800 = &minus;£600. Closing = £1,500 + (&minus;£600) = <strong>£900</strong>.</p><p><strong>April:</strong> Opening = £900. Net cash flow = £7,000 &minus; £5,900 = +£1,100. Closing = £900 + £1,100 = <strong>£2,000</strong>.</p>`,
+why:`Drills opening-→-closing with carryover.`},
+
+{n:44,topic:'1.3',type:'Compare',spec:'1.3.4',
+front:`A small business needs £5,000. When would an <em>overdraft</em> beat a <em>bank loan</em>, and vice versa?`,
+back:`<ul><li><strong>Overdraft wins</strong> when the need is <em>short-term and uncertain</em> &mdash; e.g. covering a 3-week gap before a customer pays. Interest is only on the amount and days used; flexible, no fixed repayment.</li><li><strong>Bank loan wins</strong> when the need is <em>long-term and known</em> &mdash; e.g. buying a £5,000 oven that will last 5 years. Lower interest rate, fixed repayment schedule, predictable monthly cash outflow.</li></ul><p>Mismatching them (overdraft for an oven) is expensive; (loan for a 3-week gap) means paying interest on money you don't need.</p>`,
+why:`Pushes "match the finance to the need" &mdash; a real exam discriminator.`},
+
+{n:45,topic:'1.3',type:'Misconception',spec:'1.3.4',
+front:`"Retained profit is free money &mdash; it doesn't cost the business anything." Why is this wrong?`,
+back:`<p>Retained profit <em>belongs</em> to the owners (or shareholders) &mdash; using it inside the business means <em>not</em> paying it out as dividends or taking it as drawings.</p><p>Its cost is the <strong>opportunity cost</strong>: the return owners could have earned by investing it elsewhere, or simply taking it as income.</p><p>Treating retained profit as "free" leads to wasteful internal investment that wouldn't beat what the money could earn outside the business.</p>`,
+why:`Tackles the most common GCSE finance misconception.`},
+
+{n:46,topic:'1.3',type:'Reasoning',spec:'1.3.2',
+front:`Why does <em>break-even</em> not equal <em>being safe</em>?`,
+back:`<p>Break-even just means you're covering all your costs &mdash; no profit, no loss. There's no margin for error: a 5% drop in sales pushes you into loss; an unexpected cost (broken equipment) does the same.</p><p>Break-even is the <em>minimum</em> viable position, not a safe one. The margin of safety (sales above break-even) is what gives you a buffer against shocks.</p>`,
+why:`Stops students treating break-even as a positive endpoint.`},
+
+{n:47,topic:'1.3',type:'Trace',spec:'1.3.2',
+front:`Investment of £20,000 returns the following profits over 5 years: Y1 £3,000, Y2 £5,000, Y3 £7,000, Y4 £8,000, Y5 £7,000. Calculate the <strong>average rate of return</strong> (ARR).`,
+back:`<p>Total profit over 5 years = £3,000 + £5,000 + £7,000 + £8,000 + £7,000 = <strong>£30,000</strong>.</p><p>Net profit (after returning original investment) = £30,000 &minus; £20,000 = <strong>£10,000</strong>.</p><p>Average annual profit = £10,000 &divide; 5 = <strong>£2,000</strong>.</p><p>ARR = (£2,000 &divide; £20,000) &times; 100 = <strong>10%</strong>.</p>`,
+why:`Practises the multi-step ARR calculation.`},
+
+{n:48,topic:'1.3',type:'Scenario',spec:'1.3.4',
+front:`An investor offers Maya £30,000 as venture capital in exchange for 25% of the business. Maya is profitable but cash-tight. Identify TWO reasons she might <em>refuse</em>.`,
+back:`<ul><li><strong>Loss of control:</strong> 25% of votes goes to the investor. If Maya later wants to take a salary increase, change strategy or sell, the investor's preferences now constrain her.</li><li><strong>Permanent dilution:</strong> unlike a loan she could repay and walk away from, equity is forever &mdash; she's giving up 25% of all future profits and 25% of the sale value if she ever exits. £30,000 today might cost her £300,000 later.</li></ul>`,
+why:`Trains "loan vs equity" thinking via a concrete trade-off.`},
+
+{n:49,topic:'1.3',type:'Reasoning',spec:'1.3.4',
+front:`Why do new businesses tend to find <em>external</em> finance more expensive than established ones?`,
+back:`<p>New businesses have no track record &mdash; lenders can't verify they'll repay. To compensate for this risk, banks charge higher interest, demand collateral, or refuse altogether; equity investors demand a larger stake for the same money.</p><p>Established businesses have audited accounts and a payment history, so the same £50,000 loan is cheaper. Lack of evidence ≠ lack of viability &mdash; but lenders price what they can't see.</p>`,
+why:`Connects risk to cost of capital.`},
+
+{n:50,topic:'1.3',type:'Compare',spec:'1.3.4',
+front:`Two start-ups need £20k. One uses <em>crowdfunding</em>, the other a <em>bank loan</em>. What does each gain &mdash; and lose &mdash; that the other doesn't?`,
+back:`<p><strong>Crowdfunding gains:</strong> marketing buzz (early customers/community), no debt to repay, validates demand before launch.<br><strong>Crowdfunding loses:</strong> no guarantee the campaign hits target, public exposure of the idea before launch, often requires giving rewards or equity.</p><p><strong>Bank loan gains:</strong> speed (decision in weeks), private (no idea exposure), keeps full equity.<br><strong>Bank loan loses:</strong> must repay with interest regardless of business success; collateral often required; doesn't validate demand.</p><p>Choice depends on whether the business needs <em>cash</em> or <em>cash + customers</em>.</p>`,
+why:`Forces multi-dimensional comparison rather than a list.`},
+
+{n:51,topic:'1.3',type:'Misconception',spec:'1.3.2',
+front:`"If sales rise, profit must rise too." Why isn't this guaranteed?`,
+back:`<p>Profit = Revenue &minus; Costs. If costs rise faster than revenue (e.g. a new supplier, higher wages, or expensive marketing to drive those sales), profit can <em>fall</em> even as sales climb.</p><p>Discounting to win sales is the classic trap: revenue grows but the contribution per unit shrinks, sometimes below the level that covers fixed costs.</p><p>Sales growth is good news only if margins hold.</p>`,
+why:`Targets a misconception that wrecks 6-mark answers.`},
+
+{n:52,topic:'1.3',type:'Reasoning',spec:'1.3.1',
+front:`Why might a small business prefer "social objectives" over "profit maximisation" &mdash; and why doesn't this mean it's not a serious business?`,
+back:`<p>Social objectives (e.g. fair pay, low-impact sourcing, community benefit) can act as a USP. They attract loyal customers, motivated staff and positive PR, all of which support profit indirectly.</p><p>So a "social" business is often making a strategic bet that <em>non-financial</em> aims drive <em>financial</em> success &mdash; not that profit doesn't matter. The aims are means to ends, not opposites.</p>`,
+why:`Connects financial and non-financial aims.`},
+
+{n:53,topic:'1.3',type:'Scenario',spec:'1.3.3',
+front:`A small printing firm has £4,000 cash and a £6,500 supplier bill due tomorrow. It has £18,000 in unpaid customer invoices, due in 30&ndash;45 days. Suggest TWO immediate actions and rank them.`,
+back:`<ol><li><strong>(Best) Negotiate a short overdraft or extended trade credit.</strong> A £2,500 overdraft for ~30 days costs little, lets supplier be paid on time (preserving the relationship and supply), and is cleared once invoices are paid. Cost ~£20&ndash;£50.</li><li><strong>Offer customers an early-payment discount</strong> (e.g. 2% off if paid within 7 days). May pull in some cash quickly but costs more (£18,000 &times; 2% = £360 if all accept) and is uncertain.</li></ol><p>Avoid: a long-term loan (overkill, slow), or selling assets (irreversible). The crisis is timing, not solvency.</p>`,
+why:`Trains "right finance for the right problem".`},
+
+{n:54,topic:'1.3',type:'Connection',spec:'1.3.3',
+front:`How does a strong cash-flow forecast (1.3.3) influence a bank's willingness to lend (1.3.4)?`,
+back:`<p>A lender's main fear is non-repayment. A cash-flow forecast &mdash; especially one showing the loan repayments fitted in alongside operational outflows &mdash; demonstrates that the borrower has thought about <em>when</em> money comes and goes, not just whether profits will exist.</p><p>It evidences competence and reduces perceived risk, so the bank is more likely to lend, and at a lower interest rate. A business with no forecast looks reckless even if it's profitable.</p>`,
+why:`Welds forecasting to financing.`},
+
+{n:55,topic:'1.3',type:'Extended-response',spec:'1.3.4',
+front:`<strong>Analyse</strong> the impact on a small bakery of relying on <em>trade credit</em> as its main source of short-term finance. (6 marks)`,
+back:`<p><strong>Point 1 &mdash; Benefit (AO1b):</strong> Trade credit lets the bakery take delivery of flour, butter, packaging <em>now</em> and pay 30 days later, free of interest.</p><p><strong>Develop (AO3a):</strong> This delays cash outflows, so the bakery can use sales revenue from the loaves it bakes from those ingredients to pay the bill &mdash; meaning ingredients effectively pay for themselves.</p><p><strong>Link (AO3a):</strong> This eases cash pressure during the first month of trading and reduces the need for an overdraft, lowering financing costs.</p><p><strong>Point 2 &mdash; Drawback (AO1b):</strong> Trade credit depends on the supplier's goodwill and limits.</p><p><strong>Develop (AO3a):</strong> If the bakery is late paying once, the supplier may demand cash on delivery, refuse to deliver, or shorten payment terms.</p><p><strong>Link (AO3a):</strong> This could disrupt production at a critical moment (e.g. a Saturday morning order rush) &mdash; the bakery loses revenue and reputation, and the original benefit is reversed.</p>`,
+why:`Models the standard 6-mark "two sides" structure.`},
+
+{n:56,topic:'1.3',type:'Misconception',spec:'1.3.2',
+front:`"Variable costs vary every month, fixed costs never do." Why is this a sloppy definition?`,
+back:`<ul><li><strong>Variable costs</strong> vary <em>with output</em> (more loaves baked → more flour). They don't vary just because the calendar changes.</li><li><strong>Fixed costs</strong> are fixed <em>with respect to output</em> &mdash; they don't change as you bake one more loaf. They can still change month-to-month (a rent rise) &mdash; they're "fixed" against production volume, not against time.</li></ul><p>Getting the definition right matters because break-even depends on it.</p>`,
+why:`Cleans up a high-frequency exam error.`},
+
+{n:57,topic:'1.3',type:'Trace',spec:'1.3.2',
+front:`A coffee shop's contribution per cup is £1.60 and fixed costs are £4,000/month. It currently sells 3,500 cups/month. (a) What is the margin of safety in cups? (b) What's the smallest <em>fixed-cost rise</em> it could absorb before falling below break-even?`,
+back:`<p><strong>(a)</strong> Break-even = £4,000 &divide; £1.60 = <strong>2,500 cups</strong>. Margin of safety = 3,500 &minus; 2,500 = <strong>1,000 cups</strong>.</p><p><strong>(b)</strong> Each extra £ of fixed cost raises break-even by 1 &divide; £1.60 = 0.625 cups. To eat the entire margin of safety (raise break-even from 2,500 to 3,500) needs an extra 1,000 cups &times; £1.60 = <strong>£1,600</strong> fixed-cost rise. Anything above £1,600 pushes the shop into loss at current sales.</p>`,
+why:`Stretches the formula by inverting it &mdash; same skill, harder thinking.`},
+
+{n:58,topic:'1.3',type:'Reasoning',spec:'1.3.1',
+front:`Why would a sensible founder set both a <em>financial</em> and a <em>non-financial</em> objective on day one?`,
+back:`<p>Financial objectives (revenue, profit, break-even date) keep the business solvent and measurable &mdash; without them, the bank, suppliers and the founder herself can't tell if it's working.</p><p>Non-financial objectives (independence, social aim, customer satisfaction) give <em>direction</em> &mdash; they shape decisions when two financially-equivalent options exist (e.g. cheap supplier vs ethical supplier).</p><p>Either alone is incomplete: numbers without purpose drift toward whatever's easiest to measure; purpose without numbers runs out of cash.</p>`,
+why:`Forces synthesis rather than listing.`},
+
+{n:59,topic:'1.3',type:'Scenario',spec:'1.3.4',
+front:`A founder takes £40,000 from her savings rather than borrowing £40,000 at 6%. She tells a friend "I'm using free money". Critique her reasoning.`,
+back:`<p>It's not free. Two costs:</p><ol><li><strong>Opportunity cost:</strong> £40k in savings could earn ~4&ndash;5% in a savings account or ISA &mdash; call it £2,000/year forgone.</li><li><strong>Personal risk:</strong> if the business fails, her loan would have been written off (or restructured) but her savings are gone &mdash; there's no separation between her personal finances and the business outcome.</li></ol><p>She's correctly identified that there's <em>no interest paid to a bank</em>, but the real comparison is: bank-loan interest (£2,400/year) vs lost-investment return + total personal risk. Sometimes savings are still the right call &mdash; but not because they're "free".</p>`,
+why:`Drives the opportunity-cost insight at GCSE level.`},
+
+{n:60,topic:'1.3',type:'Extended-response',spec:'1.3.4',
+front:`<em>CycleBox</em> is a 2-year-old subscription bike-maintenance start-up. Founder Tom is considering taking on a £40,000 bank loan to expand into a second city. <strong>Discuss</strong> the impact of this decision on CycleBox. (9 marks)`,
+back:`<p><strong>Para 1 &mdash; Application (AO2):</strong> CycleBox is small but established (2 years), so it has some track record but limited cash reserves. Subscription revenue is recurring, which is attractive to lenders.</p><p><strong>Para 2 &mdash; Benefit (AO3a):</strong> £40k buys premises, vans and marketing in city 2. New subscriptions in city 2 add to existing recurring revenue without cannibalising city 1 &mdash; so revenue grows faster than costs once the city-2 base is established. Tom keeps full ownership (no equity given up).</p><p><strong>Para 3 &mdash; Drawback (AO3a):</strong> Loan repayments start immediately, regardless of how fast city 2 ramps up. If take-up is slower than forecast (e.g. 9 months not 4 to hit profitability), monthly outflows on van leases + repayments + city-2 marketing could exceed inflows &mdash; pushing CycleBox into negative cash flow. Even though "profitable on paper", a cash crisis could force Tom to cut costs or fail.</p><p><strong>Para 4 &mdash; Drawback / risk (AO3a):</strong> The loan increases interest costs <em>and</em> fixes them. If the Bank of England raises interest rates, variable-rate loan repayments rise &mdash; squeezing margins on subscriptions which Tom can't easily reprice.</p><p><strong>Para 5 &mdash; Judgement (AO3b):</strong> On balance, the loan's impact depends on demand certainty in city 2. If Tom has done localised market research and a cash-flow forecast that survives a slower-than-expected ramp, the loan is a sensible growth lever &mdash; keeping equity is valuable for a 2-year-old business. If he is relying on optimistic assumptions, the impact tips negative because debt converts a growth opportunity into existential risk. <strong>Recommendation:</strong> proceed only if cash-flow forecast remains positive under a "subscriber numbers 30% below plan" scenario.</p>`,
+why:`Models a 9-mark Discuss with explicit judgement and counterfactual.`},
+
+{n:61,topic:'1.4',type:'Reasoning',spec:'1.4.1',
+front:`Why does becoming a <em>private limited company (Ltd)</em> protect the owner's house, while remaining a <em>sole trader</em> doesn't?`,
+back:`<p>A sole trader is <em>legally the same person</em> as the business &mdash; debts of the business are debts of the person. If the business owes £80,000 and can't pay, creditors can claim the owner's personal assets, including the house.</p><p>An Ltd is a separate legal entity; the owners (shareholders) only risk what they put in (their share capital). The business can fail, but the shareholders' personal assets are protected. This is "limited liability".</p>`,
+why:`Forces the legal-personality concept rather than memorising "Ltd = limited liability".`},
+
+{n:62,topic:'1.4',type:'Compare',spec:'1.4.1',
+front:`Sole trader vs partnership: when would two friends prefer staying as sole traders running parallel businesses, instead of forming a partnership?`,
+back:`<p>They'd prefer parallel sole-trader operations when:</p><ul><li>They want <strong>independent decision-making</strong> &mdash; partnerships require joint decisions and one partner's liability extends to the other's actions.</li><li>They have <strong>different ambitions</strong> (one wants to grow fast, one wants steady local work) &mdash; partnership ties their pace to each other's.</li><li>They each want <strong>full ownership of profit</strong> they generated &mdash; partnerships split profit by agreement, which can feel unfair if effort is unequal.</li></ul><p>Partnership wins when their work is <em>complementary</em> and they need each other; parallel sole-trader is better when they're <em>similar</em> and merely friendly.</p>`,
+why:`Adds nuance beyond "partnership = shared".`},
+
+{n:63,topic:'1.4',type:'Misconception',spec:'1.4.1',
+front:`"Franchising means buying someone else's business." Why is this wrong?`,
+back:`<p>Franchising means buying the <em>right to use</em> a brand, model and systems for a fee plus ongoing royalties. The franchisor still owns the brand and rules; the franchisee owns and operates <em>their</em> outlet within those rules.</p><p>A franchisee doesn't acquire ownership of McDonald's &mdash; they license a way of running a restaurant. Critically, the franchisee bears the operating risk while accepting tight constraints on what they can change.</p>`,
+why:`Cleans up a frequent confusion.`},
+
+{n:64,topic:'1.4',type:'Scenario',spec:'1.4.2',
+front:`A new gym is choosing between (a) a unit by a busy commuter station with high rent, and (b) a quieter retail park 1.5km away with low rent. List THREE factors that decide which is right, and how each cuts.`,
+back:`<ul><li><strong>Target customer:</strong> if it's commuters fitting a workout into a journey, (a) wins &mdash; proximity is the product. If it's families and weekend goers, (b) wins &mdash; parking and space matter more.</li><li><strong>Pricing model:</strong> premium gym recoups the rent through higher membership prices &mdash; (a) is viable. Budget gym depends on volume at low margins &mdash; high rent at (a) breaks the model.</li><li><strong>Competitor density:</strong> if (a) already has 2 gyms and (b) has none, the location with no competition may win even at higher rent at (a).</li></ul><p>Location ≠ "the busiest spot"; it's the spot whose costs match your customer's willingness to pay.</p>`,
+why:`Trains location reasoning, not memorising.`},
+
+{n:65,topic:'1.4',type:'Reasoning',spec:'1.4.2',
+front:`Why might a <em>manufacturer</em> care more about being near <em>raw materials</em>, while a <em>retailer</em> cares more about being near <em>customers</em>?`,
+back:`<p>For a manufacturer, raw materials are heavy/bulky and form a large share of cost; transport from a distant supplier eats margin. Locating near materials minimises inbound logistics &mdash; output is then shipped (often more cheaply per unit because it's higher-value, finished goods).</p><p>For a retailer, the opposite: stock arrives in bulk anyway, but each customer comes individually. Footfall <em>is</em> the product.</p><p>Location decisions follow whatever is hardest/most expensive to move.</p>`,
+why:`Builds the heuristic behind location choice.`},
+
+{n:66,topic:'1.4',type:'Cloze',spec:'1.4.3',
+front:`The marketing mix is the combination of <strong>{{c1}}</strong> that a business uses to influence customer purchase decisions.`,
+back:`<p><strong>product, price, place and promotion</strong></p><p>The "4 Ps". Each must reinforce the others &mdash; a premium product with a budget price, mass placement and bargain promotion will confuse customers and waste marketing spend.</p>`,
+why:``},
+
+{n:67,topic:'1.4',type:'Compare',spec:'1.4.3',
+front:`A business slashes its price by 30%. Customers love it. Why might this <em>destroy</em> the brand even though sales are up?`,
+back:`<p>Price signals quality. A 30% cut can shift the brand from "premium" to "budget" in customer minds &mdash; a perception that is hard to reverse.</p><p>Existing customers who paid full price feel cheated; new customers may only buy at the discount and refuse to pay full price later. The Place (where sold) and Promotion (image) decisions made for a premium brand stop matching the new low price, and the whole marketing mix becomes incoherent.</p><p>Short-term sales bounce; long-term, the price <em>cap</em> is now lower forever.</p>`,
+why:`Marketing-mix coherence rather than 4-list memorisation.`},
+
+{n:68,topic:'1.4',type:'Scenario',spec:'1.4.3',
+front:`A start-up handmade jewellery business chooses to sell <em>only</em> on Instagram and via popups. List ONE strength of this Place choice that suits its product, and ONE risk.`,
+back:`<ul><li><strong>Strength:</strong> matches the product. Handmade jewellery sells on visual storytelling and emotion; Instagram + popups create direct, personal contact with the maker &mdash; a USP that high-street chains can't replicate. Promotion (visual feed) and Place (digital + experiential) reinforce each other.</li><li><strong>Risk:</strong> dependence on a single platform. If Instagram changes its algorithm or the account is suspended, sales evaporate. Popups need physical setup and footfall &mdash; bad weather kills a weekend's revenue.</li></ul>`,
+why:`Tests whether they see Place as a <em>strategy</em> shaped by product, not a delivery channel.`},
+
+{n:69,topic:'1.4',type:'Misconception',spec:'1.4.3',
+front:`"Promotion just means advertising." Why is this incomplete?`,
+back:`<p>Promotion is anything that communicates with customers about the product:</p><ul><li>Advertising</li><li>Public relations</li><li>Sales promotions (discounts, BOGOF)</li><li>Direct marketing (email, SMS)</li><li>Social media and influencer content</li></ul><p>A business with no advertising budget can still run <em>strong</em> promotion via PR and word-of-mouth; one with a huge ad budget can still have weak promotion if the channels are wrong for the segment. Promotion is a portfolio, not a synonym for ads.</p>`,
+why:`Broadens the definition.`},
+
+{n:70,topic:'1.4',type:'Reasoning',spec:'1.4.3',
+front:`Why does a coherent marketing mix cost less than four "great but disconnected" elements?`,
+back:`<p>When each element of the mix reinforces the others &mdash; a premium product, premium price, exclusive place, refined promotion &mdash; every pound of marketing spend works for <em>all</em> four.</p><p>Inconsistency forces the business to <em>re-explain</em> itself every time: "premium but cheap, available everywhere but exclusive". Customers get confused, marketing has to do more work, and conversion rates fall.</p><p>Coherence is cheap; contradiction is expensive.</p>`,
+why:`Synthesises the mix as a system.`},
+
+{n:71,topic:'1.4',type:'Reasoning',spec:'1.4.4',
+front:`Why does a business plan reduce <em>risk</em> even if half of what it predicts turns out to be wrong?`,
+back:`<p>Two reasons:</p><ol><li><strong>Forces the questions to be asked.</strong> Writing the plan exposes assumptions ("how do I price?", "what if a key customer leaves?") and hidden costs that wouldn't surface otherwise.</li><li><strong>Creates a benchmark for change.</strong> When reality diverges from the plan, the business sees <em>which assumption broke</em> and can adjust deliberately, rather than reacting blindly.</li></ol><p>A wrong plan beats no plan: the act of planning produces the thinking that survives even when the document is out of date.</p>`,
+why:`Reframes the plan as an active tool, not a static document.`},
+
+{n:72,topic:'1.4',type:'Scenario',spec:'1.4.4',
+front:`A first-time entrepreneur skips writing a business plan because "I know what I want to do". Identify TWO problems she's likely to face that the plan would have prevented.`,
+back:`<ul><li><strong>Cash-flow surprise.</strong> Without a forecast inside the plan, she'll be blindsided by the lag between paying suppliers (now) and customers paying her (60 days later). The plan would have shown the cash gap and suggested an overdraft.</li><li><strong>Mismatched marketing.</strong> Without a documented target customer and marketing mix, she'll spend money on channels (e.g. local newspaper for a Gen-Z product) that don't reach her segment. The plan forces alignment between segment, place and promotion.</li></ul>`,
+why:`Drives the <em>purposes</em> of a business plan.`},
+
+{n:73,topic:'1.4',type:'Compare',spec:'1.4.1',
+front:`Should a small business choose its <em>legal structure</em> before or after its <em>location</em>? Why?`,
+back:`<p>Legal structure first. The structure determines liability, tax treatment, ability to raise capital and contractual relationships &mdash; all of which constrain <em>what</em> premises and lease terms make sense.</p><p>A sole trader with personal liability shouldn't sign a 10-year commercial lease without thinking; an Ltd with limited liability can. Location is a downstream operational decision; legal structure is upstream and harder to reverse.</p>`,
+why:`Forces decision-sequencing, a common implicit issue.`},
+
+{n:74,topic:'1.4',type:'Connection',spec:'1.4.3',
+front:`How does the choice of <em>Place</em> (1.4.3) interact with <em>legal structure</em> (1.4.1)?`,
+back:`<p>An online-only business (Place = digital) often suits a sole trader or simple Ltd because it has low fixed costs, low local risk and few employees.</p><p>A physical-chain business (Place = multiple shops) requires Ltd or franchise, because liability, capital needs and HR complexity quickly exceed what a sole trader can sustain.</p><p>Place dictates how big the legal "container" needs to be.</p>`,
+why:`Welds two areas in 1.4 the spec treats separately.`},
+
+{n:75,topic:'1.4',type:'Misconception',spec:'1.4.1',
+front:`"A franchise is a 'safer' way to start a business because the brand is already proven." Why isn't this the whole truth?`,
+back:`<p>The brand is proven, but the <em>outlet</em> isn't. The franchisee personally pays the franchise fee (often £20k&ndash;£200k+), commits to long leases, hires staff, and takes operational risk &mdash; all in a model where they can't change the menu, prices or marketing if locally something isn't working.</p><p>So the brand-risk is lower; the financial-risk and operational-risk can be higher than starting from scratch in a niche market. "Safer" is partly true and partly a marketing line.</p>`,
+why:`Targets the franchise-myth.`},
+
+{n:76,topic:'1.4',type:'Scenario',spec:'1.4.3',
+front:`A coffee chain's marketing mix says "premium". Its prices are £4 a cup. It then opens in a budget retail park with parking. Why might this <em>Place</em> choice undermine the <em>Product</em> and <em>Price</em> decisions?`,
+back:`<p>Place sends a signal too. A budget retail park audience expects budget pricing &mdash; £4 coffee feels overpriced <em>for the location</em>, even if the coffee is genuinely good.</p><p>Customers attribute "premium" to the surroundings as much as the cup. The chain either has to discount (breaking pricing strategy elsewhere) or accept slow sales.</p><p>The fix: relocate to a high-street, station, or office cluster whose context confirms the price.</p>`,
+why:`Tests mix consistency under realistic constraint.`},
+
+{n:77,topic:'1.4',type:'Reasoning',spec:'1.4.3',
+front:`Why is "we're cheaper than competitors" alone a <em>fragile</em> marketing position for a small business?`,
+back:`<p>Two reasons:</p><ol><li><strong>Cost structure:</strong> small businesses rarely have the scale to be the lowest-cost producer. A larger rival can match the price and outlast you on margin.</li><li><strong>Customer attraction:</strong> customers who came for cheap will leave for cheaper. There's no loyalty &mdash; your "USP" is whoever has the lower price <em>today</em>.</li></ol><p>Sustainable positioning combines price with at least one non-price advantage (service, location, niche, brand) that competitors can't easily match.</p>`,
+why:`Reframes price competition.`},
+
+{n:78,topic:'1.4',type:'Extended-response',spec:'1.4.1',
+front:`<em>Verdebox</em> is a new direct-to-consumer plant-based snack brand. Founder Layla can choose between:<br><strong>Option A:</strong> Sole trader &mdash; keep 100% ownership, full control, unlimited liability.<br><strong>Option B:</strong> Private limited company &mdash; sell 20% to a food-industry investor for £60,000, gain mentorship, accept limited liability and dilution.<br><br><strong>Justify</strong> which option Layla should choose. (12 marks)`,
+back:`<p><strong>Recommendation: Option B (Ltd with investor).</strong></p><p><strong>Para 1 &mdash; Context (AO2):</strong> Verdebox is a consumer-goods brand selling food directly to consumers. Production requires food-safe facilities, packaging contracts and marketing spend &mdash; all upfront and capital-intensive. Layla is selling a physical product where supplier disputes, contamination risk or product-liability claims are real possibilities.</p><p><strong>Para 2 &mdash; For B: limited liability (AO1b + AO3a):</strong> As a sole trader, a single product-recall lawsuit could threaten Layla's personal assets. As an Ltd, only the £60k of share capital is at risk. For a <em>food</em> business, this protection isn't theoretical &mdash; it materially changes Layla's downside.</p><p><strong>Para 3 &mdash; For B: capital and expertise (AO3a):</strong> £60k buys initial production runs and marketing without taking on debt. The investor's industry experience reduces strategic risk in distribution/retailer negotiations &mdash; a network Layla wouldn't have on day one. Equity finance is suited to a high-growth consumer brand because cash flow during scale-up is volatile and a fixed loan repayment would constrict it.</p><p><strong>Para 4 &mdash; Against B / for A (AO3a):</strong> Option A keeps 100% ownership. If Verdebox grows to a £5m sale, 20% is £1m forgone &mdash; a real long-term cost. Sole trader is also simpler administratively (no company accounts, no Companies House filings).</p><p><strong>Para 5 &mdash; Counterpoint (AO3b):</strong> The 20% sacrifice is only meaningful if the business reaches that scale &mdash; which is far more likely <em>with</em> the investor's capital and network than without. The expected value of 80% of a successful business beats 100% of a struggling one.</p><p><strong>Para 6 &mdash; Judgement (AO3b):</strong> Option B is better because the food/consumer category combines high liability risk with high capital needs &mdash; exactly the conditions where Ltd structure adds value. The dilution is real but is the fair price for the protection and capital. Option A would only be the right choice if Layla's product had near-zero liability risk and could grow off retained profit alone &mdash; neither applies to plant-based snacks.</p>`,
+why:`Models a structured 12-mark Justify with two genuine alternatives.`},
+
+{n:79,topic:'1.4',type:'Reasoning',spec:'1.4.3',
+front:`Why is "Place" no longer just a physical question for many small businesses?`,
+back:`<p>Place now spans where customers <em>find</em> and <em>buy</em> you, including online (your own site, Amazon, Etsy, app stores), social media (Instagram shop, TikTok), marketplaces and physical popups. A small business often combines several.</p><p>The decision is therefore about which <em>combination</em> of channels reaches the target segment cost-effectively, not which single shop to rent. Treating Place as just "the shop" misses where most younger customers actually buy.</p>`,
+why:`Bridges 1.4.3 with the digital reality from 1.5.2.`},
+
+{n:80,topic:'1.4',type:'Misconception',spec:'1.4.4',
+front:`"Once you've written a business plan, you don't need to update it." Why is this wrong?`,
+back:`<p>A business plan is a <em>forecasting</em> document built on assumptions about customers, costs, competitors and the economy. All of those change.</p><p>A plan that isn't revised becomes worse than no plan &mdash; it gives a false sense of confidence about decisions made on stale assumptions. Strong businesses revisit the plan every 6&ndash;12 months (or after a major event), update assumptions, and re-justify decisions against reality.</p>`,
+why:`Frames the plan as a living tool.`},
+
+{n:81,topic:'1.5',type:'Reasoning',spec:'1.5.1',
+front:`Why are <em>customers</em> and <em>shareholders</em> sometimes in direct conflict &mdash; and how does the business decide between them?`,
+back:`<p>Customers want low prices and high quality. Shareholders want high profits &mdash; which usually means <em>higher</em> prices or <em>lower</em> costs (sometimes via lower quality or worse pay).</p><p>When the business cuts customer-facing quality to lift profits, it can cause short-term shareholder gain at the cost of long-term customer loyalty.</p><p>Most well-run businesses treat the conflict as a balance: extreme tilt toward shareholders erodes the customer base that <em>generates</em> profit. So the answer is rarely "pick one" &mdash; it's "find the trade-off the business model can sustain".</p>`,
+why:`Stakeholder conflict treated as a structural trade-off, not a list.`},
+
+{n:82,topic:'1.5',type:'Compare',spec:'1.5.1',
+front:`A pressure group and the local community are both stakeholders. How is their <em>influence</em> on a business different in kind?`,
+back:`<ul><li><strong>Local community</strong> has <em>direct</em> influence (planning objections, customer base, employees) &mdash; concrete, daily, locally bounded. A business ignoring its community loses customers and faces planning friction.</li><li><strong>Pressure group</strong> has <em>indirect, amplified</em> influence &mdash; they don't necessarily buy from the business but shape <em>public perception</em> via campaigns, media and lobbying. Their power is reputational and regulatory, not transactional.</li></ul><p>Same word ("stakeholder"), different mechanism &mdash; the response strategy is therefore different too.</p>`,
+why:`Distinguishes types of stakeholder pressure.`},
+
+{n:83,topic:'1.5',type:'Misconception',spec:'1.5.1',
+front:`"Employees are stakeholders, but they don't really influence business decisions." Why is this wrong, especially for small businesses?`,
+back:`<p>In a small business, employees often <em>are</em> the product (a hairdresser, a barista, a coder). Their motivation, skills and turnover directly drive customer experience and operating cost.</p><p>If they leave, training and recruitment costs spike; if they're disengaged, service drops and customers leave. They influence decisions on pay, hours, working conditions &mdash; and through unions, contracts or simply quitting, they shape what the business can do.</p>`,
+why:`Hits the "passive employee" trap.`},
+
+{n:84,topic:'1.5',type:'Reasoning',spec:'1.5.2',
+front:`Why does <em>e-commerce</em> often lower costs but <em>raise</em> customer expectations at the same time?`,
+back:`<p>E-commerce removes shop rent, reduces sales staff, automates payments &mdash; so unit costs fall. But customers comparing 20 sellers in 5 minutes raise their baseline: free returns, next-day delivery, instant chat support all become expected.</p><p>So the business must <em>spend</em> its cost savings on logistics, returns processing and digital service to keep up. Net effect depends on the business: those that automate well keep the gain; those that skimp on service lose customers fast.</p>`,
+why:`Avoids the cliché "tech reduces costs".`},
+
+{n:85,topic:'1.5',type:'Scenario',spec:'1.5.2',
+front:`A small bakery moves all sales to a delivery-app platform. Sales triple. Why might its <em>profit</em> not triple &mdash; and might even fall?`,
+back:`<p>Delivery apps charge commission of 20&ndash;35% per order, plus advertising boosts. Variable cost per loaf rises sharply.</p><p>If the bakery doesn't raise menu prices on the app, <em>contribution per item</em> falls &mdash; sometimes below the contribution from in-shop sales. Triple sales &times; shrunken contribution = profit may rise less than expected, stay flat, or even fall.</p><p>The bakery has also handed over the <em>customer relationship</em> (the app keeps the data) &mdash; a long-term cost that doesn't show up on this month's P&amp;L.</p>`,
+why:`Real-world tech trade-off, with the maths implicit.`},
+
+{n:86,topic:'1.5',type:'Cloze',spec:'1.5.3',
+front:`Consumer law protects buyers by requiring goods to be of <strong>{{c1}}</strong>.`,
+back:`<p><strong>satisfactory quality, fit for purpose and as described</strong></p><p>These three pillars come from the Consumer Rights Act 2015. A business that fails on any of them owes the customer a refund, repair or replacement.</p>`,
+why:``},
+
+{n:87,topic:'1.5',type:'Reasoning',spec:'1.5.3',
+front:`Why does <em>employment law</em> tend to <em>raise</em> costs for a small business but <em>reduce</em> risk?`,
+back:`<p>Employment law raises costs through minimum wage, paid leave, sick pay, pension contributions, written contracts, and health-and-safety requirements.</p><p>But it reduces risk: it protects against costly disputes, prevents sudden tribunal claims, and signals to employees the business is reputable (helping recruitment and retention).</p><p>For a small business, the cost is mostly <em>visible</em> and the risk reduction is <em>invisible</em> &mdash; which is why some founders feel the law is "all cost", until they have an issue.</p>`,
+why:`Forces the cost-vs-risk reframe.`},
+
+{n:88,topic:'1.5',type:'Misconception',spec:'1.5.3',
+front:`"Anti-discrimination law only matters for big companies." Why is that wrong?`,
+back:`<p>All UK employers, regardless of size, are subject to the Equality Act. A sole trader hiring one assistant is covered. Tribunal claims (e.g. unfair recruitment, harassment) can ruin a small business &mdash; there are no employee-number thresholds for liability.</p><p>Smaller businesses often have <em>less</em> legal expertise to handle a claim, so the <em>relative</em> impact is bigger, not smaller.</p>`,
+why:`Dispels a common student belief.`},
+
+{n:89,topic:'1.5',type:'Reasoning',spec:'1.5.4',
+front:`Why does a <em>higher</em> interest rate pressure a small business in two distinct ways at once?`,
+back:`<ol><li><strong>Cost side:</strong> existing variable-rate loans, overdrafts and mortgages cost more &mdash; direct hit to monthly outflows.</li><li><strong>Demand side:</strong> customers' own loans/mortgages cost more, so they have less disposable income; they buy fewer non-essentials. Revenue falls.</li></ol><p>A business that's leveraged <em>and</em> sells discretionary goods (e.g. holidays, eating out) gets squeezed on both sides simultaneously &mdash; explaining why recessions hit some sectors much harder than others.</p>`,
+why:`Two mechanisms, not one.`},
+
+{n:90,topic:'1.5',type:'Compare',spec:'1.5.4',
+front:`A small UK exporter and a small UK importer face the same change: the £ falls 10% against the €. Who benefits and how?`,
+back:`<ul><li><strong>Exporter benefits.</strong> Their products cost the same in £ to produce but become 10% cheaper for European customers &mdash; demand rises and/or they can pocket the gap as margin. Revenue grows.</li><li><strong>Importer suffers.</strong> Their input goods (e.g. wine, parts) cost 10% more in £ &mdash; their costs rise. To protect margins they raise prices; UK customers may buy less.</li></ul><p>Same exchange-rate move, opposite outcomes &mdash; depends entirely on direction of trade.</p>`,
+why:`Hits the most-tested external influence calc.`},
+
+{n:91,topic:'1.5',type:'Trace',spec:'1.5.4',
+front:`A UK shop imports a sofa for €600. The exchange rate is £1 = €1.20. (a) What is the £ cost? (b) The £ falls to £1 = €1.10. What is the new £ cost, and what is the cost increase as a %?`,
+back:`<p><strong>(a)</strong> £ cost = €600 &divide; 1.20 = <strong>£500.00</strong>.</p><p><strong>(b)</strong> New £ cost = €600 &divide; 1.10 = <strong>£545.45</strong>.<br>Increase = £545.45 &minus; £500.00 = £45.45.<br>% increase = (£45.45 &divide; £500.00) &times; 100 = <strong>9.09%</strong>.</p>`,
+why:`Drills the exchange-rate calculation in the Edexcel-style "&divide; rate" format.`},
+
+{n:92,topic:'1.5',type:'Scenario',spec:'1.5.4',
+front:`Inflation in the UK rises to 8%. A small bakery has fixed-price contracts to supply cafés at last year's prices. List TWO concrete impacts and ONE possible response.`,
+back:`<ul><li><strong>Impact 1:</strong> Input costs (flour, butter, energy, wages) rise but contract prices don't &mdash; contribution per loaf shrinks, possibly to negative.</li><li><strong>Impact 2:</strong> Cash flow worsens &mdash; supplier bills rise <em>now</em>, customer revenue is locked. Risk of overdraft or insolvency.</li><li><strong>Response:</strong> renegotiate contracts mid-term (citing cost clauses if any), or refuse to renew at old price; in the meantime, push other revenue channels (direct sales, online) where prices can rise immediately.</li></ul>`,
+why:`Translates an abstract rate into operational pressure.`},
+
+{n:93,topic:'1.5',type:'Misconception',spec:'1.5.4',
+front:`"A recession is bad for <em>all</em> businesses." Why is this not strictly true?`,
+back:`<p>Some businesses are <em>counter-cyclical</em> &mdash; demand actually rises in a recession. Examples: discount supermarkets (customers trade down), repair services (customers fix rather than replace), domestic holidays (vs international).</p><p>For these, the recession is a tailwind. For most discretionary goods/services, yes &mdash; demand falls.</p><p>So the better question is "which segment does this business sit in?" not "is recession good or bad?".</p>`,
+why:`Avoids the binary mental model.`},
+
+{n:94,topic:'1.5',type:'Reasoning',spec:'1.5.4',
+front:`Why does <em>consumer income</em> matter to a luxury business in a way it doesn't to a discount supermarket?`,
+back:`<p>Luxury goods have high <strong>income elasticity</strong> (a small income rise drives big demand rise; small income fall, big demand fall). Discount supermarkets have <em>low</em> income elasticity &mdash; people still need food.</p><p>So a 5% income drop causes minor pain at a discount supermarket and major pain at a luxury jewellery brand. This determines who needs to react fastest to economic news and who can largely ignore it.</p>`,
+why:`Introduces the income-elasticity intuition.`},
+
+{n:95,topic:'1.5',type:'Connection',spec:'1.5.2',
+front:`How does <em>technology</em> (1.5.2) interact with <em>legislation</em> (1.5.3) when a small business takes customer payments online?`,
+back:`<p>Tech enables the option (Stripe, Apple Pay, etc.); law shapes what the business <em>must</em> do with it &mdash; secure storage, GDPR, refund rights under the Consumer Rights Act, fraud protections.</p><p>The two together mean a small business can offer payment options previously only available to big firms &mdash; but is also legally responsible for any breach.</p><p>The ease of accepting payments hides the regulatory load that comes with them.</p>`,
+why:`Welds tech-and-law, an underrated 1.5 connection.`},
+
+{n:96,topic:'1.5',type:'Extended-response',spec:'1.5.4',
+front:`<strong>Discuss</strong> the impact of <em>rising interest rates</em> on a small UK gym chain that took on £200,000 in variable-rate loans last year and earns most revenue from monthly memberships. (9 marks)`,
+back:`<p><strong>Para 1 &mdash; Application (AO2):</strong> A small gym chain's revenue is recurring (monthly subscriptions) but cost base includes leases, equipment finance, and the £200,000 variable-rate loan. Customers are mid-income consumers paying ~£30&ndash;£60/month &mdash; a discretionary spend.</p><p><strong>Para 2 &mdash; Direct cost impact (AO3a):</strong> Each 1% rise in rates adds £2,000/year to interest on the £200,000 loan. A 3% rise adds £6,000/year &mdash; coming straight off operating profit. For a small chain, this can flip from profit to loss without any other change.</p><p><strong>Para 3 &mdash; Demand impact (AO3a):</strong> Members' own mortgages and rents are rising; disposable income falls. Gym memberships are non-essential. Cancellation rates rise, new sign-ups slow, and lifetime value per customer drops. Revenue weakens at the same time interest costs rise &mdash; the squeeze hits both ends of the P&amp;L.</p><p><strong>Para 4 &mdash; Mitigation / counterpoint (AO3b):</strong> The chain isn't powerless: refinancing onto a fixed-rate term locks in current cost; promoting annual prepayment plans (with discount) brings forward cash and reduces churn risk; product changes (off-peak only, smaller-class memberships) can retain price-sensitive members.</p><p><strong>Para 5 &mdash; Judgement (AO3b):</strong> The impact is significant and largely negative &mdash; but its severity depends on how exposed the chain is. If highly leveraged AND in a high-cost area where members are also stretched, rising rates can be existential. If lightly leveraged AND members are higher-income, the impact is uncomfortable but manageable. The chain should <em>prioritise refinancing the loan to fixed rate</em>, then preserve cash by reducing discretionary outflows. <strong>Verdict:</strong> the impact is material; survival depends on how quickly management de-risks the loan.</p>`,
+why:`A scenario-grounded 9-marker covering economy, finance and stakeholders.`},
+
+{n:97,topic:'1.5',type:'Misconception',spec:'1.5.1',
+front:`"Stakeholders' interests always conflict." Why is this overstated?`,
+back:`<p>They often align. Customers want a quality product → employees want pride in their work → shareholders want long-term repeat revenue → community wants a stable local employer.</p><p>The famous "conflict" cases (e.g. higher dividends vs higher wages) are real but specific. A well-run business spends most of its time on issues where the right decision benefits multiple stakeholders simultaneously.</p><p>Over-emphasising conflict makes for confused strategic thinking.</p>`,
+why:`Balances the "conflict" trope.`},
+
+{n:98,topic:'1.5',type:'Connection',spec:'1.5.2',
+front:`How can a single change in <em>technology</em> (1.5.2) affect <em>all four</em> parts of the marketing mix at once (1.4.3)?`,
+back:`<p>Take social media as an example.</p><ul><li><strong>Product:</strong> customer feedback fed back into design &mdash; products evolve faster.</li><li><strong>Price:</strong> dynamic pricing tools and competitor visibility tighten the spread.</li><li><strong>Place:</strong> Instagram shop becomes a primary sales channel, not just promotion.</li><li><strong>Promotion:</strong> organic and paid social replace newspaper/leaflet ads.</li></ul><p>A small business can't change <em>one</em> of these without consequences for the others &mdash; which is why technology adoption is rarely just an IT decision.</p>`,
+why:`Cross-spec connection card.`},
+
+{n:99,topic:'1.5',type:'Reasoning',spec:'1.5.4',
+front:`Why is <em>taxation</em> a more reliable lever for governments than businesses think &mdash; and a more uncertain one than governments think?`,
+back:`<p>For governments: tax produces revenue and can shape behaviour (fuel duty, sugar levy).</p><p>For businesses: the <em>direct</em> effect (VAT, corporation tax) is predictable; the <em>indirect</em> effects (consumer demand changes, competitor responses, behavioural shifts) are far less so.</p><p>So a business plan that confidently models a "5p tax rise → 5p price rise → same demand" almost always overestimates predictability. Tax shapes behaviour, including in ways neither side fully predicts.</p>`,
+why:`Adds nuance often missed in 6-mark answers.`},
+
+{n:100,topic:'1.5',type:'Extended-response',spec:'1.5.4',
+front:`<em>GreenLeaf Tea</em> is a UK-based small loose-tea importer. The £ has weakened by 12% against major supplier currencies, and UK inflation is at 7%. Owner Idris is choosing between:<br><strong>Option A:</strong> Hold prices, absorb the cost increase, protect customers, accept lower margins for 6 months.<br><strong>Option B:</strong> Raise prices by 10% immediately, protecting margins but risking customer loss.<br><br><strong>Justify</strong> which option Idris should choose. (12 marks)`,
+back:`<p><strong>Recommendation: Option B (with a clear customer message).</strong></p><p><strong>Para 1 &mdash; Context (AO2):</strong> GreenLeaf is a small importer &mdash; currency moves and inflation hit two places at once: import costs rise 12% (in £), and other operating costs (packaging, energy, wages) rise with inflation. Margins were not designed to absorb double-digit cost shocks for long.</p><p><strong>Para 2 &mdash; For B: financial sustainability (AO3a):</strong> A 10% price rise restores most of the margin lost to the FX move. Holding prices (Option A) for 6 months may move the business from profit to loss, draining cash reserves at the worst possible time (when borrowing is also expensive).</p><p><strong>Para 3 &mdash; For B: customer behaviour (AO3a):</strong> UK consumers are experiencing 7% inflation across many products. A 10% rise in a niche tea brand is unlikely to cause more loss than would already occur &mdash; many other brands are raising prices simultaneously. With clear communication ("our import costs have risen due to currency movements"), most loyal customers stay.</p><p><strong>Para 4 &mdash; For A (AO3a):</strong> Holding prices preserves customer goodwill. If a competitor <em>does</em> hold prices, GreenLeaf risks losing market share. If the £ recovers in 6 months, Idris would have raised prices unnecessarily and damaged his brand for nothing.</p><p><strong>Para 5 &mdash; Counterpoint (AO3b):</strong> The risk of Option A is asymmetric &mdash; losing 6 months of margin is real and immediate; the £ recovering is hopeful and uncertain. Currency forecasts are notoriously unreliable. In a high-inflation environment, customers are <em>less</em> surprised by a 10% rise, not more.</p><p><strong>Para 6 &mdash; Judgement (AO3b):</strong> Option B is the correct call. The combined external pressure (FX + inflation) makes margin protection a survival issue, and the wider inflation environment makes customers more tolerant of a price rise than usual. The risk of Option A &mdash; sustained margin loss + cash burn &mdash; outweighs the brand benefit. Idris should raise by 10% with a transparent communication, monitor demand, and reverse the rise <em>only if</em> sales drop sharply (which is unlikely in this environment).</p>`,
+why:`Caps the deck with a fully-worked 12-marker tying economy, marketing mix and finance.`}
+
+];
+
+let state={i:0,topic:'all',type:'all',showBack:false,known:new Set(),review:new Set(),dueOnly:false,order:null};
+const KEY='bs1_master_v1';
+
+function load(){try{const r=localStorage.getItem(KEY);if(r){const d=JSON.parse(r);state.known=new Set(d.known||[]);state.review=new Set(d.review||[]);state.i=d.i||0;state.topic=d.topic||'all';state.type=d.type||'all';state.dueOnly=!!d.dueOnly;state.order=d.order||null}}catch(e){}}
+function save(){localStorage.setItem(KEY,JSON.stringify({known:[...state.known],review:[...state.review],i:state.i,topic:state.topic,type:state.type,dueOnly:state.dueOnly,order:state.order}))}
+function resetProgress(){if(confirm('Clear all progress?')){state.known.clear();state.review.clear();state.i=0;state.dueOnly=false;state.order=null;save();render()}}
+
+function filtered(){
+  let list=cards.slice();
+  if(state.order){list=state.order.map(n=>cards.find(c=>c.n===n)).filter(Boolean)}
+  list=list.filter(c=>{
+    if(state.topic!=='all'&&c.topic!==state.topic)return false;
+    if(state.type!=='all'&&c.type!==state.type)return false;
+    if(state.dueOnly&&!state.review.has(c.n))return false;
+    return true;
+  });
+  return list;
+}
+
+function shuffle(){
+  const arr=cards.map(c=>c.n);
+  for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}
+  state.order=arr;state.i=0;state.showBack=false;save();render();
+}
+function toggleDue(){state.dueOnly=!state.dueOnly;state.i=0;save();buildFilters();render()}
+
+function render(){
+  const list=filtered();
+  const counter=document.getElementById('counter');
+  document.getElementById('due-pill').classList.toggle('active',state.dueOnly);
+  if(list.length===0){
+    document.getElementById('card-meta').innerHTML='';
+    document.getElementById('front').innerHTML='<div class="empty">No cards match this filter.</div>';
+    document.getElementById('back-wrap').classList.add('hidden');
+    document.getElementById('controls').innerHTML='';
+    counter.textContent='0 cards';return;
+  }
+  if(state.i>=list.length)state.i=0;
+  const c=list[state.i];
+  counter.textContent=`Card ${state.i+1}/${list.length} · ${state.known.size} got it · ${state.review.size} review · ${cards.length} total`;
+  document.getElementById('bar').style.width=`${(state.known.size/cards.length)*100}%`;
+  document.getElementById('card-meta').innerHTML=`<span class="tag type">${c.type}</span><span class="tag">Topic ${c.topic}</span><span class="tag spec">Spec ${c.spec}</span><span class="tag num">#${c.n}</span>`;
+  document.getElementById('front').innerHTML=c.front;
+  document.getElementById('back').innerHTML=c.back;
+  document.getElementById('why').innerHTML=c.why?`<strong>Why this card:</strong> ${c.why}`:'';
+  document.getElementById('back-wrap').classList.toggle('hidden',!state.showBack);
+  const ctl=document.getElementById('controls');
+  if(!state.showBack){
+    ctl.innerHTML=`<button class="btn btn-prev" onclick="prev()">&lsaquo; Prev</button><button class="btn btn-show" onclick="flip()">Show answer</button><button class="btn btn-next" onclick="next()">Next &rsaquo;</button>`;
+  }else{
+    ctl.innerHTML=`<button class="btn btn-review" onclick="markReview()">Needs work</button><button class="btn btn-known" onclick="markKnown()">Got it</button><button class="btn btn-next" onclick="next()">Skip &rsaquo;</button>`;
+  }
+}
+function flip(){state.showBack=!state.showBack;render()}
+function next(){const l=filtered();if(!l.length)return;state.i=(state.i+1)%l.length;state.showBack=false;save();render()}
+function prev(){const l=filtered();if(!l.length)return;state.i=(state.i-1+l.length)%l.length;state.showBack=false;save();render()}
+function markKnown(){const c=filtered()[state.i];if(c){state.known.add(c.n);state.review.delete(c.n);save();next()}}
+function markReview(){const c=filtered()[state.i];if(c){state.review.add(c.n);state.known.delete(c.n);save();next()}}
+function buildFilters(){
+  const topics=['all','1.1','1.2','1.3','1.4','1.5'];
+  const types=['all','Reasoning','Scenario','Compare','Connection','Trace','Extended-response','Cloze','Misconception'];
+  document.getElementById('topic-filters').innerHTML=topics.map(t=>`<span class="pill ${state.topic===t?'active':''}" onclick="setTopic('${t}')">${t==='all'?'All topics':'Topic '+t}</span>`).join('');
+  document.getElementById('type-filters').innerHTML=types.map(t=>`<span class="pill ${state.type===t?'active':''}" onclick="setType('${t}')">${t==='all'?'All types':t}</span>`).join('');
+}
+function setTopic(t){state.topic=t;state.i=0;save();buildFilters();render()}
+function setType(t){state.type=t;state.i=0;save();buildFilters();render()}
+load();buildFilters();render();
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();state.showBack?next():flip()}
+  if(e.key==='ArrowLeft')prev();
+  if(e.key==='k'&&state.showBack)markKnown();
+  if(e.key==='r'&&state.showBack)markReview();
+});
+</script>
+</body>
+</html>
