@@ -1,0 +1,224 @@
+{
+  "main": {
+    "id": "f4554c6251de166e",
+    "type": "split",
+    "children": [
+      {
+        "id": "dcd3117434c8e6e4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "841fad8a1422ba5b",
+            "type": "leaf",
+            "state": {
+              "type": "pdf",
+              "state": {
+                "file": "Archive/organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-ExaminerReport.pdf"
+              },
+              "icon": "lucide-file-text",
+              "title": "Edexcel-GCSE-Business-1BS0-June2019-Paper01-ExaminerReport"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "964fadc21bc6b936",
+    "type": "split",
+    "children": [
+      {
+        "id": "a37c53167afbe1e0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "eeb401914b756a92",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "446300f871dfc621",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "17f66873e9a8ba28",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 718.5
+  },
+  "right": {
+    "id": "10beb0f53cb0e7b2",
+    "type": "split",
+    "children": [
+      {
+        "id": "d5fc9c426d9e5050",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7fb040ecd40d6563",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Archive/organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined.pdf",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined"
+            }
+          },
+          {
+            "id": "a5495af937255341",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Archive/organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined.pdf",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined"
+            }
+          },
+          {
+            "id": "6731edbfe36a0cbf",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "97d078808a4690f5",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "3f09d68a0ffce18e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Archive/organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined.pdf",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "841fad8a1422ba5b",
+  "lastOpenFiles": [
+    "Archive/organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-QuestionPaper.pdf",
+    "Archive/organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-MarkScheme.pdf",
+    "Archive/organized/2019/Edexcel-GCSE-Business-1BS0-June2019-Paper01-ExaminerReport.pdf",
+    "Archive/organized/specimen/Edexcel-GCSE-Business-1BS0-SpecimenSet1-SAMs-Combined.pdf",
+    "Archive/organized/specimen/Edexcel-GCSE-Business-1BS0-Specification.pdf",
+    "Topic Question Banks/1.1 Enterprise and entrepreneurship.pdf",
+    "Topic Question Banks/1.2 Spotting a business opportunity.pdf",
+    "Archive/raw_downloads/2024_08_22_02_rms_1bs0.pdf",
+    "Archive/raw_downloads/2023_08_24_02_rms_1bs0.pdf",
+    "Archive/raw_downloads/2022_08_25_02_rms_1bs0.pdf",
+    "Archive/raw_downloads/2024_06_06_02_que_1bs0.pdf",
+    "Topics/Paper 1/1.2 Spotting a business opportunity.md",
+    "Topics/Paper 1/1.1 Enterprise and entrepreneurship.md",
+    "Topics/Paper 1/1.5 Understanding external influences on business.md",
+    "Topics/Paper 1/1.4 Making the business effective.md",
+    "Topics/Paper 1/1.3 Putting a business idea into practice.md",
+    "Topic Question Banks/README.md",
+    "Archive/reports/inventory_summary.md",
+    "Archive/reports/paper2_analysis.md",
+    "Archive/reports/paper1_analysis.md",
+    "Flashcards/Case Studies.md",
+    "Flashcards/Command Words.md",
+    "Flashcards/Paper 2 - Key Terms.md",
+    "Flashcards/Paper 1 - Key Terms.md",
+    "Revision Map.canvas",
+    "READY-FOR-NICOLE.md",
+    "StudySubject.md",
+    "Skills/Paper 2 Bar-Gate Stock Graphs.md",
+    "Skills/Extended Response Structures.md",
+    "Skills/Chart and Graph Skills.md",
+    "Skills/Quantitative Skills.md",
+    "Skills/Command Words.md",
+    "Case Studies/Index.md",
+    "Topics/Paper 2/2.5 Making human resource decisions.md",
+    "Topics/Paper 2/2.4 Making financial decisions.md",
+    "Strategy/Exam Strategy.md",
+    "Topics/Paper 2/2.3 Making operational decisions.md"
+  ]
+}
